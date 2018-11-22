@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Account name:</strong>
+  <%= @user.account_name %>
+</p>
+
+<p>
+  <strong>User name:</strong>
+  <%= @user.user_name %>
+</p>
+
+<p>
+  <strong>Icon path:</strong>
+  <%= @user.icon_path %>
+</p>
+
+<p>
+  <strong>Invite num:</strong>
+  <%= @user.invite_num %>
+</p>
+
+<p>
+  <strong>Be invited num:</strong>
+  <%= @user.be_invited_num %>
+</p>
+
+<p>
+  <strong>Accept num:</strong>
+  <%= @user.accept_num %>
+</p>
+
+<%= link_to 'Edit', edit_user_path(@user) %> |
+<%= link_to 'Back', users_path %>
