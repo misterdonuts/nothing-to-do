@@ -5,6 +5,7 @@
 <table>
   <thead>
     <tr>
+      <th>Choose</th>
       <th>Account name</th>
       <th>User name</th>
       <th>Icon path</th>
@@ -16,19 +17,22 @@
   </thead>
 
   <tbody>
-    <% @users.each do |user| %>
-      <tr>
-        <td><%= user.account_name %></td>
-        <td><%= user.user_name %></td>
-        <td><%= user.icon_path %></td>
-        <td><%= user.invite_num %></td>
-        <td><%= user.be_invited_num %></td>
-        <td><%= user.accept_num %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
+    <form>
+      <% @users.each do |user| %>
+        <tr>
+          <td><input type="checkbox" name="q1" value="id"></td>
+          <td><%= user.account_name %></td>
+          <td><%= user.user_name %></td>
+          <td><%= user.icon_path %></td>
+          <td><%= user.invite_num %></td>
+          <td><%= user.be_invited_num %></td>
+          <td><%= user.accept_num %></td>
+          <td><%= link_to 'Show', user %></td>
+          <td><%= link_to 'Edit', edit_user_path(user) %></td>
+          <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        </tr>
+      <% end %>
+    </form>
   </tbody>
 </table>
 
