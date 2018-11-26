@@ -15,7 +15,7 @@ class UsersTest < ApplicationSystemTestCase
     click_on "New User"
 
     fill_in "Accept Num", with: @user.accept_num
-    fill_in "Account Name", with: @user.account_name
+    fill_in "Email", with: @user.email
     fill_in "Be Invited Num", with: @user.be_invited_num
     fill_in "Icon Path", with: @user.icon_path
     fill_in "Invite Num", with: @user.invite_num
@@ -31,7 +31,7 @@ class UsersTest < ApplicationSystemTestCase
     click_on "Edit", match: :first
 
     fill_in "Accept Num", with: @user.accept_num
-    fill_in "Account Name", with: @user.account_name
+    fill_in "Email", with: @user.email
     fill_in "Be Invited Num", with: @user.be_invited_num
     fill_in "Icon Path", with: @user.icon_path
     fill_in "Invite Num", with: @user.invite_num

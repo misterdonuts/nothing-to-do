@@ -6,7 +6,7 @@
   <thead>
     <tr>
       <th>Choose</th>
-      <th>Account name</th>
+      <th>Email</th>
       <th>User name</th>
       <th>Icon path</th>
       <th>Invite num</th>
@@ -21,7 +21,7 @@
       <% @users.each do |user| %>
         <tr>
           <td><%= check_box_tag :chosen %></td>
-          <td><%= user.account_name %></td>
+          <td><%= user.email %></td>
           <td><%= user.user_name %></td>
           <td><%= user.icon_path %></td>
           <td><%= user.invite_num %></td>
