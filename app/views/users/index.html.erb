@@ -20,7 +20,7 @@
     <form>
       <% @users.each do |user| %>
         <tr>
-          <td><input type="checkbox" name="q1" value="id"></td>
+          <td><%= check_box_tag :chosen %></td>
           <td><%= user.account_name %></td>
           <td><%= user.user_name %></td>
           <td><%= user.icon_path %></td>
