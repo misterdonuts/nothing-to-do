@@ -233,16 +233,12 @@ DEPENDENCIES
   guard-minitest (= 2.4.4)
   jbuilder (~> 2.5)
   jquery-rails (~> 4.3, >= 4.3.3)
-  pg (>= 0.18, < 2.0)
-  puma (~> 3.11)
-  rails (~> 5.2.1)
-  rails-controller-testing
   minitest (= 5.10.3)
   minitest-reporters (= 1.1.14)
   pg (>= 0.18, < 2.0)
   puma (~> 3.11)
   rails (~> 5.2.1)
-  rails-controller-testing (= 1.0.2)
+  rails-controller-testing
   rails_12factor (= 0.0.2)
   sass-rails (~> 5.0)
   turbolinks (~> 5)
