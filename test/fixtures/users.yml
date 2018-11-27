@@ -1,17 +1,1 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
-one:
-  account_name: MyString
-  user_name: MyString
-  icon_path: MyString
-  invite_num: 1
-  be_invited_num: 1
-  accept_num: 1
-
-two:
-  account_name: MyString
-  user_name: MyString
-  icon_path: MyString
-  invite_num: 1
-  be_invited_num: 1
-  accept_num: 1
