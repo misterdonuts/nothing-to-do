@@ -17,10 +17,10 @@
   </thead>
 
   <tbody>
-    <form>
+	  <%= form_tag(invitations_path, method: :post) do %>
       <% @users.each do |user| %>
         <tr>
-          <td><%= check_box_tag :chosen %></td>
+          <td><%= check_box_tag 'user[id][]', user.id %></td>
           <td><%= user.email %></td>
           <td><%= user.user_name %></td>
           <td><%= user.icon_path %></td>
@@ -32,7 +32,9 @@
           <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
         </tr>
       <% end %>
-    </form>
+      <%= submit_tag "誘う" %>
+    <% end %>
+
   </tbody>
 </table>
 
