@@ -15,3 +15,4 @@ User.create(email: 'piyopiyo@gmail.com', user_name: 'piyo', icon_path: 'sdfsd8f9
 Group.create(group_id: 1, group_name: 'pon de lion', user_id: 3)
 Group.create(group_id: 1, group_name: 'pon de lion', user_id: 4)
 Group.create(group_id: 1, group_name: 'pon de lion', user_id: 5)
+Group.create(group_id: 2, group_name: 'pon de lion', user_id: 3)
