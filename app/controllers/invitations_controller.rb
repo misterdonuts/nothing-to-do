@@ -18,18 +18,22 @@ class InvitationsController < ApplicationController
     # 招待相手を取得
     @recievers = User.find(params[:recievers][:id])
 
-    @recievers.each do |reciever|
-      Invitation.create(
-        sender: @sender.id,
-        reciever: reciever.id,
-        contents: params[:text],
-        accept: 0,
-        timelimit: (Time.now.to_i + (60 * 60 * 2)), # 現在日時＋2時間
-        createtime: Time.now.to_i, # UNIXタイムスタンプ
-      )
+    begin
+      @recievers.each do |reciever|
+        Invitation.create(
+          sender: @sender.id,
+          reciever: reciever.id,
+          contents: params[:text],
+          accept: 0,
+          timelimit: (Time.now.to_i + (60 * 60 * 2)), # 現在日時＋2時間
+          createtime: Time.now.to_i, # UNIXタイムスタンプ
+        )
+      end
+    rescue => e
+      redirect_to invitations_path
     end
 
-    render plain: @recievers.inspect
+    redirect_to root_path
 
   end
 end
