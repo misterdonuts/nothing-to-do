@@ -11,3 +11,8 @@ User.create(email: 'iiaddadadad@gmail.com', user_name: 'iida', icon_path: '9sdfs
 User.create(email: 'hogehoge@gmail.com', user_name: 'hoge', icon_path: '78sdfds.png', invite_num: 99, be_invited_num: 19932, accept_num:1999, password:'foobar', password_confirmation: 'foobar')
 User.create(email: 'fugafuga@gmail.com', user_name: 'fuga', icon_path: 'sa8dfsd.png', invite_num: 6, be_invited_num: 10, accept_num:50, password:'foobar', password_confirmation: 'foobar')
 User.create(email: 'piyopiyo@gmail.com', user_name: 'piyo', icon_path: 'sdfsd8f98f.png', invite_num: 100, be_invited_num: 10, accept_num:80, password:'foobar', password_confirmation: 'foobar')
+
+Group.create(group_id: 1, group_name: 'pon de lion', user_id: 3)
+Group.create(group_id: 1, group_name: 'pon de lion', user_id: 4)
+Group.create(group_id: 1, group_name: 'pon de lion', user_id: 5)
+Group.create(group_id: 2, group_name: 'pon de lion', user_id: 3)
