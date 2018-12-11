@@ -1,0 +1,16 @@
+Your name：<%= @user.user_name %>
+<br />
+
+<%= form_with url: invitations_path, method: :post, local: true do |f| %>
+  招待する人一覧
+  <% @recievers.each do |reciever| %>
+  <p>
+  <%= f.hidden_field 'recievers[id][]', :value => reciever.id %>
+  <%= reciever.user_name %>
+  </p>
+  <% end %>
+  <br />
+  招待内容
+  <%= f.text_field :text %>
+  <%= f.submit "誘う" %>
+<% end %>
