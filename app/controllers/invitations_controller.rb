@@ -35,7 +35,7 @@ class InvitationsController < ApplicationController
       redirect_to invitations_path
     end
 
-    redirect_to root_path and return
+    redirect_to root_path
 
   end
 end
