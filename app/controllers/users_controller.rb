@@ -8,7 +8,7 @@ class UsersController < ApplicationController
       redirect_to login_path
     end
     @users = User.where(id: GroupRelation.where(group_id: GroupRelation.where(user_id: session[:user_id]).select(:group_id)).select(:user_id))
-    @invitation = Invitation.all().first();
+    @invitations = Invitation.where(reciever: session[:user_id])
   end
 
   # GET /users/1

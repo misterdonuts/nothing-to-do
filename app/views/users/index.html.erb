@@ -2,8 +2,6 @@
 
 <h1>暇な人一覧</h1>
 
-
-
 <!-- form_with はデフォルトがAjax通信化されている（data-remote="true"）のでこれを無効にするのにlocal: trueが必要 -->
 <%= form_with url: invitations_path, method: :get, local: true do |f| %>
     <table class="table table-hover">
@@ -40,4 +38,27 @@
 <% end %>
 <br>
 
-<%= link_to 'New User', new_user_path %>
+<h1>あなたを招待している人一覧</h1>
+
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>User name</th>
+      <th>Email</th>
+      <th>Time limit</th>
+      <th>Invited time</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @invitations.each do |invitation| %>
+      <tr>
+        <td><%= invitation.id %></td>
+        <td><%= invitation.user.user_name %></td>
+        <td><%= invitation.user.email %></td>
+        <td><%= Time.at(invitation.timelimit) %></td>
+        <td><%= Time.at(invitation.createtime)%></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
