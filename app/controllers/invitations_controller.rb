@@ -28,7 +28,7 @@ class InvitationsController < ApplicationController
           accept: 0,
           timelimit: (Time.now.to_i + (60 * 60 * 2)), # 現在日時＋2時間
           createtime: Time.now.to_i, # UNIXタイムスタンプ
-          user_id: @sender.id,
+          user_id: reciever.id,
         )
       end
     rescue => e

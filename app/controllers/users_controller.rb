@@ -9,6 +9,7 @@ class UsersController < ApplicationController
     end
     @users = User.where(id: GroupRelation.where(group_id: GroupRelation.where(user_id: session[:user_id]).select(:group_id)).select(:user_id))
     @invitations = Invitation.where(reciever: session[:user_id])
+    @my_invitations = Invitation.where(sender: session[:user_id])
   end
 
   # GET /users/1
