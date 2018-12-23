@@ -54,7 +54,7 @@
    <tbody>
      <% @invitations.each do |invitation| %>
        <tr>
-         <td><%= invitation.id %></td>
+         <td><%= invitation.invitation_group_id %></td>
          <td><%= invitation.user.user_name %></td>
          <td><%= invitation.user.email %></td>
          <td><%= Time.at(invitation.timelimit) %></td>
@@ -81,7 +81,7 @@
    <tbody>
      <% @my_invitations.each do |invitation| %>
        <tr>
-         <td><%= invitation.id %></td>
+         <td><%= invitation.invitation_group_id %></td>
          <td><%= invitation.user.user_name %></td>
          <td><%= invitation.user.email %></td>
          <td><%= Time.at(invitation.timelimit) %></td>

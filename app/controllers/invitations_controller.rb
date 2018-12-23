@@ -18,6 +18,14 @@ class InvitationsController < ApplicationController
     @sender = User.find(session[:user_id])
     # 招待相手を取得
     @recievers = User.find(params[:recievers][:id])
+    
+    # 設定するinvitation_group_idの取得
+    max_invitation_group_id = Invitation.maximum(:invitation_group_id)
+    if max_invitation_group_id.blank?
+      next_invitation_group_id = 1
+    else
+      next_invitation_group_id = max_invitation_group_id + 1
+    end
 
     begin
       @recievers.each do |reciever|
@@ -29,9 +37,11 @@ class InvitationsController < ApplicationController
           timelimit: (Time.now.to_i + (60 * 60 * 2)), # 現在日時＋2時間
           createtime: Time.now.to_i, # UNIXタイムスタンプ
           user_id: reciever.id,
+          invitation_group_id: next_invitation_group_id,
         )
       end
     rescue => e
+      p e
       redirect_to invitations_path
     end
 
