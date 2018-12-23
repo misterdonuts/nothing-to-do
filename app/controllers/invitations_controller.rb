@@ -30,12 +30,10 @@ class InvitationsController < ApplicationController
     begin
       @recievers.each do |reciever|
         Invitation.create(
-          sender: @sender.id,
           reciever: reciever.id,
           contents: params[:text],
           accept: 0,
-          timelimit: (Time.now.to_i + (60 * 60 * 2)), # 現在日時＋2時間
-          createtime: Time.now.to_i, # UNIXタイムスタンプ
+          time_limit: (Time.now.to_i + (60 * 60 * 2)), # 現在日時＋2時間
           user_id: reciever.id,
           invitation_group_id: next_invitation_group_id,
         )
