@@ -1,6 +1,6 @@
 class InvitationsController < ApplicationController
 
-#  招待アクション
+  # 招待アクション
   def index
     # ログインユーザー取得
     @user = User.find(session[:user_id])
@@ -10,15 +10,29 @@ class InvitationsController < ApplicationController
     # render plain: params.inspect
   end
 
-  # 招待受け入れ, 辞退, 編集
-  # /invitations/1
+  # 招待確認
+  # GET /invitations/1
   def show
     @user = User.find(session[:user_id])
-    @invitation = Invitation.where(invitation_group_id: params[:id]).first
+    @invitation = Invitation.where(invitation_group_id: params[:id], receiver: session[:user_id]).first
     @invited_users = User.where(id: Invitation.where(invitation_group_id: params[:id]).select(:receiver))
   end
 
-#  招待メールの作成アクション
+  # 招待承諾, 辞退
+  # /invitations/1
+  def update
+    invitation = Invitation.Invitation.where(invitation_group_id: params[:id], receiver: session[:user_id]).first
+    begin
+      invitation.update(accept: params[:status])
+    rescue => e
+      p e
+    end
+    redirect_to root_path
+  end
+
+
+
+  # 招待メールの作成アクション
   def create
 
     # ログインユーザー取得
