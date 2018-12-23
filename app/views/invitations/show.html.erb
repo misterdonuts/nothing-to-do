@@ -34,4 +34,7 @@
 <%= f.hidden_field :status, :value => 1 %>
 <%= f.submit "受け入れる"%>
 <% end %>
-<%= link_to '辞退する', root_path,  class: "btn btn-primary" %>
+<%= form_with url: invitation_path, method: :put, local: true do |f| %>
+<%= f.hidden_field :status, :value => 2 %>
+<%= f.submit "辞退する"%>
+<% end %>
