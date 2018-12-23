@@ -1,0 +1,35 @@
+<h1>招待情報</h1>
+
+<h3>招待されている人</h3>
+<table class="table table-hover">
+ <thead>
+   <tr>
+     <th>User name</th>
+     <th>Email</th>
+   </tr>
+ </thead>
+ <tbody>
+   <% @invited_users.each do |user| %>
+     <tr>
+       <td><%= user.user_name %></td>
+       <td><%= user.email %></td>
+     </tr>
+   <% end %>
+ </tbody>
+</table>
+
+<br>
+<hr>
+<br>
+
+<h3>招待が失効するまで...</h3>
+<%= @invitation.time_limit %>
+
+<br>
+<hr>
+<br>
+
+<h3>招待を...</h3>
+<%= link_to '受け入れる', root_path,  class: "btn btn-primary" %>
+&nbsp;&nbsp;
+<%= link_to '辞退する', root_path,  class: "btn btn-primary" %>

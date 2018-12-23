@@ -1,23 +1,44 @@
 class InvitationsController < ApplicationController
 
-#  招待アクション
-  def get
+  # 招待アクション
+  def index
     # ログインユーザー取得
     @user = User.find(session[:user_id])
     # 招待相手を取得
-    @recievers = User.find(params[:user][:id])
+    @receivers = User.find(params[:user][:id])
 
     # render plain: params.inspect
   end
 
+  # 招待確認
+  # GET /invitations/1
+  def show
+    @user = User.find(session[:user_id])
+    @invitation = Invitation.where(invitation_group_id: params[:id], receiver: session[:user_id]).first
+    @invited_users = User.where(id: Invitation.where(invitation_group_id: params[:id]).select(:receiver))
+  end
 
-#  招待メールの作成アクション
+  # 招待承諾, 辞退
+  # /invitations/1
+  def update
+    invitation = Invitation.Invitation.where(invitation_group_id: params[:id], receiver: session[:user_id]).first
+    begin
+      invitation.update(accept: params[:status])
+    rescue => e
+      p e
+    end
+    redirect_to root_path
+  end
+
+
+
+  # 招待メールの作成アクション
   def create
 
     # ログインユーザー取得
     @sender = User.find(session[:user_id])
     # 招待相手を取得
-    @recievers = User.find(params[:recievers][:id])
+    @receivers = User.find(params[:receivers][:id])
     
     # 設定するinvitation_group_idの取得
     max_invitation_group_id = Invitation.maximum(:invitation_group_id)
@@ -28,15 +49,13 @@ class InvitationsController < ApplicationController
     end
 
     begin
-      @recievers.each do |reciever|
+      @receivers.each do |receiver|
         Invitation.create(
-          sender: @sender.id,
-          reciever: reciever.id,
+          receiver: receiver.id,
           contents: params[:text],
           accept: 0,
-          timelimit: (Time.now.to_i + (60 * 60 * 2)), # 現在日時＋2時間
-          createtime: Time.now.to_i, # UNIXタイムスタンプ
-          user_id: reciever.id,
+          time_limit: DateTime.now + Rational(2,24), # 現在日時＋2時間
+          user_id: session[:user_id],
           invitation_group_id: next_invitation_group_id,
         )
       end
