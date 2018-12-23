@@ -10,6 +10,11 @@ class InvitationsController < ApplicationController
     # render plain: params.inspect
   end
 
+  # 招待受け入れ, 辞退, 編集
+  # /invitations/1
+  def show
+    @invitation = Invitation.find(params[:id])
+  end
 
 #  招待メールの作成アクション
   def create

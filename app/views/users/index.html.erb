@@ -42,27 +42,28 @@
  <h1>あなたを招待している人一覧</h1>
  
  <table class="table table-hover">
-   <thead>
-     <tr>
-       <th>Id</th>
-       <th>User name</th>
-       <th>Email</th>
-       <th>Time limit</th>
-     </tr>
-   </thead>
-   <tbody>
-     <% @invitations.each do |invitation| %>
-       <tr>
-         <td><%= invitation.invitation_group_id %></td>
-         <td><%= invitation.user.user_name %></td>
-         <td><%= invitation.user.email %></td>
-         <td><%= invitation.time_limit %></td>
-       </tr>
-     <% end %>
-   </tbody>
+  <thead>
+    <tr>
+      <th>Id</th>
+      <th>User name</th>
+      <th>Email</th>
+      <th>Time limit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @invitations.each do |invitation| %>
+      <tr>
+        <td><%= link_to invitation.invitation_group_id, invitation %></td>
+        <td><%= invitation.user.user_name %></td>
+        <td><%= invitation.user.email %></td>
+        <td><%= invitation.time_limit %></td>
+      </tr>
+    <% end %>
+  </tbody>
  </table>
 <% end %>
 
+<!-- 
 <% if @my_invitations.present? %>
  <h1>あなたが招待している人一覧</h1>
  
@@ -86,4 +87,4 @@
      <% end %>
    </tbody>
  </table>
-<% end %>
+<% end %> -->
