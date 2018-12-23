@@ -14,7 +14,8 @@ class InvitationsController < ApplicationController
   # /invitations/1
   def show
     @user = User.find(session[:user_id])
-    @invitations = Invitation.where(invitation_group_id: params[:id])
+    @invitation = Invitation.where(invitation_group_id: params[:id]).first
+    @invited_users = User.where(id: Invitation.where(invitation_group_id: params[:id]).select(:receiver))
   end
 
 #  招待メールの作成アクション
