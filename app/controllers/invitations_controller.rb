@@ -5,7 +5,7 @@ class InvitationsController < ApplicationController
     # ログインユーザー取得
     @user = User.find(session[:user_id])
     # 招待相手を取得
-    @recievers = User.find(params[:user][:id])
+    @receivers = User.find(params[:user][:id])
 
     # render plain: params.inspect
   end
@@ -17,7 +17,7 @@ class InvitationsController < ApplicationController
     # ログインユーザー取得
     @sender = User.find(session[:user_id])
     # 招待相手を取得
-    @recievers = User.find(params[:recievers][:id])
+    @receivers = User.find(params[:receivers][:id])
     
     # 設定するinvitation_group_idの取得
     max_invitation_group_id = Invitation.maximum(:invitation_group_id)
@@ -28,13 +28,13 @@ class InvitationsController < ApplicationController
     end
 
     begin
-      @recievers.each do |reciever|
+      @receivers.each do |receiver|
         Invitation.create(
-          reciever: reciever.id,
+          receiver: receiver.id,
           contents: params[:text],
           accept: 0,
           time_limit: (Time.now.to_i + (60 * 60 * 2)), # 現在日時＋2時間
-          user_id: reciever.id,
+          user_id: receiver.id,
           invitation_group_id: next_invitation_group_id,
         )
       end
