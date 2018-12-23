@@ -30,6 +30,8 @@
 <br>
 
 <h3>招待を...</h3>
-<%= link_to '受け入れる', root_path,  class: "btn btn-primary" %>
-&nbsp;&nbsp;
+<%= form_with url: invitation_path, method: :put, local: true do |f| %>
+<%= f.hidden_field :status, :value => 1 %>
+<%= f.submit "受け入れる"%>
+<% end %>
 <%= link_to '辞退する', root_path,  class: "btn btn-primary" %>

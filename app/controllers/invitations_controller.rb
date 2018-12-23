@@ -21,6 +21,7 @@ class InvitationsController < ApplicationController
   # 招待承諾, 辞退
   # /invitations/1
   def update
+    debugger
     invitation = Invitation.Invitation.where(invitation_group_id: params[:id], receiver: session[:user_id]).first
     begin
       invitation.update(accept: params[:status])
