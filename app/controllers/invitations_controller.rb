@@ -33,8 +33,8 @@ class InvitationsController < ApplicationController
           receiver: receiver.id,
           contents: params[:text],
           accept: 0,
-          time_limit: (Time.now.to_i + (60 * 60 * 2)), # 現在日時＋2時間
-          user_id: receiver.id,
+          time_limit: DateTime.now + Rational(2,24), # 現在日時＋2時間
+          user_id: session[:user_id],
           invitation_group_id: next_invitation_group_id,
         )
       end
