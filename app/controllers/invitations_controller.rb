@@ -1,7 +1,7 @@
 class InvitationsController < ApplicationController
 
 #  招待アクション
-  def get
+  def index
     # ログインユーザー取得
     @user = User.find(session[:user_id])
     # 招待相手を取得
@@ -13,7 +13,8 @@ class InvitationsController < ApplicationController
   # 招待受け入れ, 辞退, 編集
   # /invitations/1
   def show
-    @invitation = Invitation.find(params[:id])
+    @user = User.find(session[:user_id])
+    @invitations = Invitation.where(invitation_group_id: params[:id])
   end
 
 #  招待メールの作成アクション
