@@ -12,13 +12,19 @@ User.create(email: 'hogehoge@gmail.com', user_name: 'hoge', icon_path: '78sdfds.
 User.create(email: 'fugafuga@gmail.com', user_name: 'fuga', icon_path: 'sa8dfsd.png', invite_num: 6, be_invited_num: 10, accept_num:50, password:'foobar', password_confirmation: 'foobar')
 User.create(email: 'piyopiyo@gmail.com', user_name: 'piyo', icon_path: 'sdfsd8f98f.png', invite_num: 100, be_invited_num: 10, accept_num:80, password:'foobar', password_confirmation: 'foobar')
 
-Group.create(group_name: 'pon de lion')
-Group.create(group_name: 'french cruller')
-Group.create(group_name: 'old fashion')
+Group.create(id: 1, group_name: 'pon de lion')
+Group.create(id: 2, group_name: 'french cruller')
+Group.create(id: 3, group_name: 'old fashion')
 
 GroupRelation.create(user_id: 1, group_id: 1)
 GroupRelation.create(user_id: 1, group_id: 2)
 GroupRelation.create(user_id: 2, group_id: 2)
 GroupRelation.create(user_id: 3, group_id: 2)
-GroupRelation.create(user_id: 4, group_id: 3)
+GroupRelation.create(user_id: 4, group_id: 2)
 GroupRelation.create(user_id: 5, group_id: 3)
+
+Invitation.create(sender: 2, reciever: 1, accept: 0, timelimit: 1545530889, createtime:1545523689, user_id: 1, invitation_group_id: 1)
+Invitation.create(sender: 2, reciever: 3, accept: 0, timelimit: 1545530889, createtime:1545523689, user_id: 3, invitation_group_id: 1)
+Invitation.create(sender: 1, reciever: 2, accept: 0, timelimit: 1545531111, createtime:1545523622, user_id: 2, invitation_group_id: 2)
+Invitation.create(sender: 1, reciever: 3, accept: 0, timelimit: 1545531111, createtime:1545523622, user_id: 3, invitation_group_id: 2)
+Invitation.create(sender: 2, reciever: 1, accept: 0, timelimit: 1545530889, createtime:1545523689, user_id: 1, invitation_group_id: 3)

@@ -4,8 +4,12 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.where(id: GroupRelation.where(group_id: GroupRelation.where(user_id: session[:user_id]).select(:group_id)).select(:user_id))
-    @invitation = Invitation.all().first();
+    if session[:user_id].blank?
+      redirect_to login_path
+    end
+    @users = User.where(id: GroupRelation.where(group_id: GroupRelation.where(user_id: session[:user_id]).select(:group_id)).select(:user_id)).where.not(id: session[:user_id])
+    @invitations = Invitation.where(reciever: session[:user_id])
+    @my_invitations = Invitation.where(sender: session[:user_id])
   end
 
   # GET /users/1
