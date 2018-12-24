@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  get 'invitation_relations/show'
   root 		'users#index'
   get    	'/login',   to: 'sessions#new'
   post   	'/login',   to: 'sessions#create'
@@ -12,7 +11,5 @@ Rails.application.routes.draw do
   resources :users
   resources :invitations
   resources :invitation_relations
-  get '/invitations', to: 'invitations#get'
-  post '/invitations', to: 'invitations#create'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
