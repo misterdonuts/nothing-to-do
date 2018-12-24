@@ -13,9 +13,9 @@ class InvitationsController < ApplicationController
   # 招待確認
   # GET /invitations/1
   def show
-    @user = User.find(session[:user_id])
-    @invitation = Invitation.find_by(id: params[:id])
-    @invited_users = User.where(id: InvitationRelation.where(invitation_id: params[:id]).select(:user_id))
+    # @user = User.find(session[:user_id])
+    # @invitation = Invitation.find_by(id: params[:id])
+    # @invited_users = User.where(id: InvitationRelation.where(invitation_id: params[:id]).select(:user_id))
   end
 
   # 招待承諾, 辞退

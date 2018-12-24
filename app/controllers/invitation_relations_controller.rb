@@ -5,6 +5,7 @@ class InvitationRelationsController < ApplicationController
     	@user = User.find(session[:user_id])
     	@invitation = Invitation.find_by(id: params[:id])
     	@invited_users = User.where(id: InvitationRelation.where(invitation_id: params[:id]).select(:user_id))
+    	@invitation_relation = InvitationRelation.find_by(invitation_id: params[:id], user_id: session[:user_id])
   	end
 
 

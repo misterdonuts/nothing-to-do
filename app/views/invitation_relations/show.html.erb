@@ -30,11 +30,21 @@
 <br>
 
 <h3>招待を...</h3>
+
 <%= form_with url: invitation_relation_path, method: :put, local: true do |f| %>
-<%= f.hidden_field :status, :value => 1 %>
-<%= f.submit "受け入れる"%>
+  <%= f.hidden_field :status, :value => 1 %>
+  <% if @invitation_relation.status == 1 %>
+    <%= f.submit "受け入れる", disabled: true %>
+  <% else %>
+    <%= f.submit "受け入れる", disabled: false %>
+  <% end %>
 <% end %>
+
 <%= form_with url: invitation_relation_path, method: :put, local: true do |f| %>
 <%= f.hidden_field :status, :value => 2 %>
-<%= f.submit "辞退する"%>
+  <% if @invitation_relation.status == 2 %>
+    <%= f.submit "辞退する", disabled: true%>
+  <% else %>
+    <%= f.submit "辞退する", disabled: false %>
+  <% end %>
 <% end %>
