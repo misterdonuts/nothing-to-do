@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_24_053659) do
+ActiveRecord::Schema.define(version: 2018_12_24_061224) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,9 +29,9 @@ ActiveRecord::Schema.define(version: 2018_12_24_053659) do
   end
 
   create_table "invitation_relations", force: :cascade do |t|
-    t.integer "invitation_group_id"
+    t.integer "invitation_id"
     t.integer "sender_id"
-    t.integer "receiver_id"
+    t.integer "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "status"
@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(version: 2018_12_24_053659) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.integer "invitation_group_id"
     t.datetime "time_limit", null: false
   end
 
