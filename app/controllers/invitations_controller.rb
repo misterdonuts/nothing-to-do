@@ -13,21 +13,21 @@ class InvitationsController < ApplicationController
   # 招待確認
   # GET /invitations/1
   def show
-    @user = User.find(session[:user_id])
-    @invitation = Invitation.where(invitation_group_id: params[:id], receiver: session[:user_id]).first
-    @invited_users = User.where(id: Invitation.where(invitation_group_id: params[:id]).select(:receiver))
+    # @user = User.find(session[:user_id])
+    # @invitation = Invitation.find_by(id: params[:id])
+    # @invited_users = User.where(id: InvitationRelation.where(invitation_id: params[:id]).select(:user_id))
   end
 
   # 招待承諾, 辞退
   # /invitations/1
   def update
-    invitation = Invitation.Invitation.where(invitation_group_id: params[:id], receiver: session[:user_id]).first
-    begin
-      invitation.update(accept: params[:status])
-    rescue => e
-      p e
-    end
-    redirect_to root_path
+    # invitation = Invitation.where(invitation_group_id: params[:id], receiver: session[:user_id]).first
+    # begin
+    #   invitation.update(accept: params[:status])
+    # rescue => e
+    #   p e
+    # end
+    # redirect_to invitation_path
   end
 
 
