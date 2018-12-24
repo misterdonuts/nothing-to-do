@@ -1,0 +1,2 @@
+class InvitationRelation < ApplicationRecord
+end
