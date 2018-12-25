@@ -3,6 +3,6 @@
 <div align="center">
 	<%= @group.group_name %>
 </div>
-
+<%= link_to 'グループにメンバーを招待する', group_relation_path %> |
 <%= link_to 'Edit', edit_group_path(@group) %> |
 <%= link_to 'Back', groups_path %>

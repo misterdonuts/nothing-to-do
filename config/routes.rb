@@ -12,5 +12,6 @@ Rails.application.routes.draw do
   resources :invitations
   resources :invitation_relations
   resources :groups
+  resources :group_relations
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end
