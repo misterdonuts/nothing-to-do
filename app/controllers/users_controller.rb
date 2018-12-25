@@ -7,6 +7,7 @@ class UsersController < ApplicationController
     if session[:user_id].blank?
       redirect_to login_path
     end
+    @login_user = User.find(session[:user_id])
     @users = User.where(id: GroupRelation.where(group_id: GroupRelation.where(user_id: session[:user_id]).select(:group_id)).select(:user_id)).where.not(id: session[:user_id])
     @invitation_relations = InvitationRelation.where(user_id: session[:user_id])
     @invitations = Invitation.where(user_id: session[:user_id])
@@ -25,6 +26,7 @@ class UsersController < ApplicationController
 
   # GET /users/1/edit
   def edit
+    @user = User.find(params[:id])
   end
 
   # POST /users
@@ -42,14 +44,28 @@ class UsersController < ApplicationController
   # PATCH/PUT /users/1
   # PATCH/PUT /users/1.json
   def update
-    respond_to do |format|
+    # respond_to do |format|
+    #   if @user.update(user_params)
+    #     format.html { redirect_to @user, notice: 'User was successfully updated.' }
+    #     format.json { render :show, status: :ok, location: @user }
+    #   else
+    #     format.html { render :edit }
+    #     format.json { render json: @user.errors, status: :unprocessable_entity }
+    #   end
+    # end
+    @user = User.find(params[:id])
+    #編集しようとしてるユーザーがログインユーザーとイコールかをチェック
+    if current_user == @user
       if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'User was successfully updated.' }
-        format.json { render :show, status: :ok, location: @user }
+        flash[:success] = 'ユーザー情報を編集しました。'
+        render :edit
       else
-        format.html { render :edit }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
+        flash.now[:danger] = 'ユーザー情報の編集に失敗しました。'
+        render :edit
       end
+
+    else
+        redirect_to root_url
     end
   end
 
@@ -71,6 +87,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :user_name, :icon_path, :invite_num, :be_invited_num, :accept_num, :password, :password_confirmation)
+      params.require(:user).permit(:email, :user_name, :invite_num, :be_invited_num, :accept_num, :password, :password_confirmation, :image)
     end
 end
