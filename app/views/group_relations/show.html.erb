@@ -46,5 +46,6 @@
 	  </tbody>
 	</table>
     <br/>
+    <%= f.hidden_field :group_id, :value => @group.id %>
 	<%= f.submit "招待する" , id: "submit-button", class: "invite-button"%>
 <% end %>

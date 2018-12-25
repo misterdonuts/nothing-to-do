@@ -7,5 +7,28 @@ class GroupRelationsController < ApplicationController
 	end
 
 	def create
+		p "paramsを表示"
+		p params[:group_id]
+		p params[:user][:id]
+
+		@new_users = User.find(params[:user][:id])
+
+		begin
+			@new_users.each do |new_user|
+				GroupRelation.create(
+					group_id: params[:group_id],
+					user_id: new_user.id,
+				)
+			end
+		rescue => e
+			p e
+		end
+		redirect_to :action => "show", :id => params[:group_id]
+	end
+
+	private
+
+	def group_relation_params
+		params.require(:group_relation).permit(:group_id, :user_id)
 	end
 end
