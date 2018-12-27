@@ -7,5 +7,5 @@ class User < ApplicationRecord
 	has_secure_password
 	validates :password, presence: true, length: { minimum: 6 }, on: :create
 	#カラムの名前をmount_uploaderに指定
-	mount_uploader :image, ImageUploader, on: :update # 一字的ににバリデーションの有効タイミングを設定
+	mount_uploader :image, ImageUploader, on: :update # 一時的にバリデーションの有効タイミングを設定
 end
