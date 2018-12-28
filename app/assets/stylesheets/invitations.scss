@@ -1,3 +1,58 @@
 // Place all the styles related to the Invitations controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.invitation-confirm {
+  width: 400px;
+  margin: 70px auto 60px;
+
+  p{
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  ul.receiver {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    display: block;
+    li {
+      display: inline-block;
+      &.receiver-image {
+        width:200px;
+        box-sizing: border-box;
+        padding: 10px 30px;
+      }
+      &.receiver-name {
+        width: 100%;
+
+      }
+    }
+  }
+  label {
+    display: block;
+    font-size: 1.3rem;
+  }
+  .text-field {
+    width: 100%;
+    height: 100px;
+  }
+  input[tyoe="submit"].confirm-button{
+    display: block;
+    margin: 30px auto;
+    width: 150px;
+    height: 40px;
+    border: 1px solid #CCCCCC;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #CCCCCC;
+    font-size: 1.3rem;
+    text-align: center;
+    transition-property: all;
+    transition-duration:  200ms;
+    &:hover{
+      background-color:  #777777;
+    }
+  }
+
+}

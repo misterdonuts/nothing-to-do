@@ -1,16 +1,14 @@
-Your name：<%= @user.user_name %>
-<br />
-
-<%= form_with url: invitations_path, method: :post, local: true do |f| %>
-  招待する人一覧
+<%= form_with url: invitations_path, method: :post, local: true, class: "invitation-confirm" do |f| %>
+  <p>誘う人一覧</p>
   <% @receivers.each do |receiver| %>
-  <p>
   <%= f.hidden_field 'receivers[id][]', :value => receiver.id %>
-  <%= receiver.user_name %>
-  </p>
+  <ul class="receiver">
+    <li class="receiver-image" ><%= image_tag receiver.image.url ,:width => "100"%></li>
+    <li class="receiver-name" ><%= receiver.user_name %><li>
+  </ul>
   <% end %>
   <br />
-  招待内容
-  <%= f.text_field :text %>
-  <%= f.submit "誘う" %>
+  <label for="text">招待内容<label>
+  <%= f.text_field :text, id: "text" ,class: "text-field" %>
+  <%= f.submit "招待" , class: "confirm-button" %>
 <% end %>
