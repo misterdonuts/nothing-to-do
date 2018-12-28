@@ -15,7 +15,7 @@
         <tr>
           <th>Checkbox</th>
           <th>名前</th>
-          <th>暇率</th>
+          <th>暇率(受け入れ回数)</th>
           <th>幹事回数</th>
         </tr>
       </thead>
@@ -28,9 +28,16 @@
                 &nbsp;
                 </label>
               </td>
-              <td><%= user.email %></td>
-              <td><%= user.user_name %></td>
-              <td><%= user.image %></td>
+              <td class="user-info-main">
+                <% if user.image?  %>
+                  <div class="user-image" ><%= image_tag member.user.image.url,:width => "70", :height => "70" %></div>
+                <% else %>
+                  <div class="user-image" ><%= image_tag('sample.jpg', :width => "70", :height => "70")  %></div>
+                <% end %>
+                <div class="user-name"><%= user.user_name %></div>
+              </td>
+              <td><%= user.accept_num %></td>
+              <td><%= user.invite_num %></td>
             </tr>
           <% end %>
       </tbody>
@@ -38,56 +45,6 @@
     <br/>
 <%= f.submit "誘う" , id: "submit-button", class: "invite-button"%>
 <% end %>
-<br><br><br><br><br><br><br><br><br><br>
-
-<% if @invitation_relations.present? %>
- <h1>あなたを招待している人一覧</h1>
-
- <table class="table table-hover">
-  <thead>
-    <tr>
-      <th>Invitation group id</th>
-      <th>User name</th>
-      <th>Email</th>
-    </tr>
-  </thead>
-  <tbody>
-    <% @invitation_relations.each do |invitation| %>
-      <tr>
-        <td><%= link_to invitation.id, invitation %></td>
-        <td><%= invitation.user.user_name %></td>
-        <td><%= invitation.user.email %></td>
-      </tr>
-    <% end %>
-  </tbody>
- </table>
-<% end %>
-
-<!--
-<% if @my_invitations.present? %>
- <h1>あなたが招待している人一覧</h1>
-
- <table class="table table-hover">
-   <thead>
-     <tr>
-       <th>Id</th>
-       <th>User name</th>
-       <th>Email</th>
-       <th>Time limit</th>
-     </tr>
-   </thead>
-   <tbody>
-     <% @my_invitations.each do |invitation| %>
-       <tr>
-         <td><%= invitation.invitation_group_id %></td>
-         <td><%= invitation.user.user_name %></td>
-         <td><%= invitation.user.email %></td>
-         <td><%= invitation.time_limit %></td>
-       </tr>
-     <% end %>
-   </tbody>
- </table>
-<% end %>
--->
+<br><br><br><br>
 
 </div>

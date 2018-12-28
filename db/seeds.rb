@@ -23,7 +23,7 @@ GroupRelation.create(user_id: 3, group_id: 2)
 GroupRelation.create(user_id: 4, group_id: 2)
 GroupRelation.create(user_id: 5, group_id: 3)
 
-Invitation.create(time_limit: "2018-12-23 00:37:06.938725", user_id: 2, contents: "iidaがsawaとhogeとfugaを誘った")
+Invitation.create(time_limit: "2018-12-30 00:37:06.938725", user_id: 2, contents: "iidaがsawaとhogeとfugaを誘った")
 Invitation.create(time_limit: "2018-12-23 00:37:06.938725", user_id: 3, contents: "hogeがsawaとiidaとfugaを誘った")
 
 InvitationRelation.create(status: 0, sender_id: 2, user_id:1, invitation_id: 1)
