@@ -55,7 +55,7 @@ class InvitationsController < ApplicationController
       @receivers.each do |receiver|
         relation = InvitationRelation.new(
           invitation_id: invitation.id,
-          receiver_id: session[:user_id],
+          sender_id: session[:user_id],
           user_id: receiver.id,  # リレーションのカラムの方をsenderにする
           status: 0,
         )
