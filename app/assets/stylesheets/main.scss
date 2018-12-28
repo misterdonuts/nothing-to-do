@@ -27,40 +27,55 @@ header{
       font-size: 1rem;
       line-height: 1.8;
       cursor: pointer;
-    }
-    li:nth-child(1){
-      margin-right: auto;
-      width: 220px;
-      font-size: 1.6rem;
-      line-height: 1;
-    }
-    li.dropdown{
-      position: relative;
-      ul.dropdown-menu{
-        position: absolute;
-        right: 10px;
-        top: 36px;
-        background-color: white;
-        width: 100px;
-        height: 130px;
-        list-style: none;
-        border: 1px solid rgba(100,100,100,0.6);
-        border-radius: 4px;
-        padding: 0px;
-        li{
-          display: block;
-          font-size: 1rem;
-          line-height: 1.8;
-          box-sizing: border-box;
-          width:90px;
-          height: 30px;
-          margin: 10px 5px;;
-          border: 1px soiid rgba(188,188,188,0.4);
-          border-radius: 4px;
+      &:nth-child(1){
+        margin-right: auto;
+        width: 220px;
+        font-size: 1.6rem;
+        line-height: 1;
+      }
+      &.message{
+        position: relative;
+        .announce-circle{
+          position: absolute;
+          top: -10px;
+          left: 80px;
+          width: 25px;
+          height:25px;
+          color: white;
+          background-color: #dc5c54;
+          border: 0.6px solid #c8acad;
+          border-radius: 50%;
           text-align: center;
         }
-        li:hover{
-          background: orange;
+      }
+      &.dropdown{
+        position: relative;
+        ul.dropdown-menu{
+          position: absolute;
+          right: 10px;
+          top: 36px;
+          background-color: white;
+          width: 100px;
+          height: 130px;
+          list-style: none;
+          border: 1px solid rgba(100,100,100,0.6);
+          border-radius: 4px;
+          padding: 0px;
+          li{
+            display: block;
+            font-size: 1rem;
+            line-height: 1.8;
+            box-sizing: border-box;
+            width:90px;
+            height: 30px;
+            margin: 10px 5px;;
+            border: 1px soiid rgba(188,188,188,0.4);
+            border-radius: 4px;
+            text-align: center;
+          }
+          li:hover{
+            background: orange;
+          }
         }
       }
     }

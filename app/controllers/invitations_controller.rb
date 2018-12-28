@@ -43,25 +43,23 @@ class InvitationsController < ApplicationController
     # 招待相手を取得
     @receivers = User.find(params[:receivers][:id])
 
-    # 設定するinvitation_group_idの取得
-    max_invitation_group_id = Invitation.maximum(:invitation_group_id)
-    if max_invitation_group_id.blank?
-      next_invitation_group_id = 1
-    else
-      next_invitation_group_id = max_invitation_group_id + 1
-    end
 
     begin
+      invitation = Invitation.new(
+        contents: params[:text],
+        time_limit: DateTime.now + Rational(params[:time_span],24), # 現在日時＋2時間
+        user_id: session[:user_id],
+      )
+      invitation.save!
+
       @receivers.each do |receiver|
-        inv = Invitation.new(
-          receiver: receiver.id,
-          contents: params[:text],
-          accept: 0,
-          time_limit: DateTime.now + Rational(params[:time_span],24), # 現在日時＋2時間
-          user_id: session[:user_id],
-          invitation_group_id: next_invitation_group_id,
+        relation = InvitationRelation.new(
+          invitation_id: invitation.id,
+          receiver_id: session[:user_id],
+          user_id: receiver.id,  # リレーションのカラムの方をsenderにする
+          status: 0,
         )
-        inv.save!
+        relation.save!
       end
     rescue => e
       p e
