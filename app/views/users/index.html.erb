@@ -1,102 +1,29 @@
+<p id="notice"><%= notice %></p>
 
-<div class="index-container">
+<h1>ユーザー一覧</h1>
 
-<form class="search" action="" post="post">
-  <input class="search-bar" type="text">
-  <input class="search-botton" type="submit" value="検索">
-</form>
-
-<h1>暇な人一覧</h1>
-
-<!-- form_with はデフォルトがAjax通信化されている（data-remote="true"）のでこれを無効にするのにlocal: trueが必要 -->
-<%= form_with url: invitations_path, method: :get, local: true do |f| %>
-    <table class="free-people-table">
-      <thead>
-        <tr>
-          <th>Checkbox</th>
-          <th>名前</th>
-          <th>暇率</th>
-          <th>幹事回数</th>
-        </tr>
-      </thead>
-      <tbody>
-          <% @users.each.with_index(1) do |user,i| %>
-            <tr>
-              <td>
-                <%= check_box_tag 'user[id][]', user.id, false, id: "checkbox-#{i}"  %>
-                <label for=<%= "checkbox-#{i}" %> class=<%= "checkbox-label-#{i}" %> >
-                &nbsp;
-                </label>
-              </td>
-              <td><%= user.email %></td>
-              <td><%= user.user_name %></td>
-              <td><%= user.image %></td>
-            </tr>
-          <% end %>
-      </tbody>
-    </table>
-    <br/>
-<%= f.submit "誘う" , id: "submit-button", class: "invite-button"%>
-<% end %>
-<br><br><br><br><br><br><br><br><br><br>
-
-<% if @invitation_relations.present? %>
- <h1>あなたを招待している人一覧</h1>
-
- <table class="table table-hover">
+<table align="center">
   <thead>
     <tr>
-      <th>Invitation group id</th>
-      <th>User name</th>
-      <th>Email</th>
+      <th>ユーザー名</th>
+      <th>詳細</th>
+      <th>編集</th>
+      <th>削除</th>
     </tr>
   </thead>
-  <tbody>
-    <% @invitation_relations.each do |invitation| %>
+
+  <tbody align="center">
+    <% @users.each do |user| %>
       <tr>
-        <td><%= link_to invitation.id, invitation %></td>
-        <td><%= invitation.user.user_name %></td>
-        <td><%= invitation.user.email %></td>
+        <td><%= user.user_name %></td>
+        <td><%= link_to 'Show', user %></td>
+        <td><%= link_to 'Edit', edit_user_path(user) %></td>
+        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
- </table>
-<% end %>
+</table>
 
-<!--
-<% if @my_invitations.present? %>
- <h1>あなたが招待している人一覧</h1>
+<br>
 
- <table class="table table-hover">
-   <thead>
-     <tr>
-       <th>Id</th>
-       <th>User name</th>
-       <th>Email</th>
-       <th>Time limit</th>
-     </tr>
-   </thead>
-   <tbody>
-     <% @my_invitations.each do |invitation| %>
-       <tr>
-         <td><%= invitation.invitation_group_id %></td>
-         <td><%= invitation.user.user_name %></td>
-         <td><%= invitation.user.email %></td>
-         <td><%= invitation.time_limit %></td>
-       </tr>
-     <% end %>
-   </tbody>
- </table>
-<% end %>
--->
-
-</div>
-<script>
-  $('.dropdown').on('click', function(){
-      if($('.dropdown-menu').hasClass('display-none')){
-        $('.dropdown-menu').removeClass('display-none');
-      } else {
-        $('.dropdown-menu').addClass('display-none');
-      }
-  });
-</script>
+<%= link_to 'New Group', new_user_path %>
