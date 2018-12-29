@@ -10,7 +10,6 @@ class InvitationRelationsController < ApplicationController
 			remain_minutes = remain_minutes / 60 # second => minutes
 			i.update(remain_minutes: remain_minutes)
 		}
-
 	end
 
 	  # 各招待情報の表示 これ特に必要なさそう？
