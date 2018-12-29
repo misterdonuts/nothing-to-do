@@ -10,6 +10,8 @@ Rails.application.routes.draw do
   get 'static_pages/about'
   resources :users
   resources :invitations
+  get		'/kanji',	to: 'invitations#kanji'
+  put	'/kanji',	to: 'invitations#kanjiUpdate'
   resources :invitation_relations
   resources :groups
   resources :group_relations

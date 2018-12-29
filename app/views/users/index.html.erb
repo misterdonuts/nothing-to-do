@@ -7,50 +7,6 @@
   <input class="search-botton" type="submit" value="検索">
 </form>
 
-<h1>暇な人一覧</h1>
-
-<!-- form_with はデフォルトがAjax通信化されている（data-remote="true"）のでこれを無効にするのにlocal: trueが必要 -->
-<%= form_with url: invitations_path, method: :get, local: true do |f| %>
-    <table class="free-people-table">
-      <thead>
-        <tr>
-          <th>Checkbox</th>
-          <th>名前</th>
-          <th>暇率(受け入れ回数)</th>
-          <th>幹事回数</th>
-        </tr>
-      </thead>
-      <tbody>
-          <% @users.each.with_index(1) do |user,i| %>
-            <tr>
-              <td>
-                <%= check_box_tag 'user[id][]', user.id, false, id: "checkbox-#{i}"  %>
-                <label for=<%= "checkbox-#{i}" %> class=<%= "checkbox-label-#{i}" %> >
-                &nbsp;
-                </label>
-              </td>
-              <td class="user-info-main">
-                <% if user.image?  %>
-                  <div class="user-image" ><%= image_tag member.user.image.url,:width => "70", :height => "70" %></div>
-                <% else %>
-                  <div class="user-image" ><%= image_tag('sample.jpg', :width => "70", :height => "70")  %></div>
-                <% end %>
-                <div class="user-name"><%= user.user_name %></div>
-              </td>
-              <td><%= user.accept_num %></td>
-              <td><%= user.invite_num %></td>
-            </tr>
-          <% end %>
-      </tbody>
-    </table>
-    <br/>
-<%= f.submit "誘う" , id: "submit-button", class: "invite-button"%>
-<% end %>
-<br><br><br><br>
-
-</div>
-
-
 <table align="center">
   <thead>
     <tr>

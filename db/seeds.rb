@@ -6,11 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-User.create(email: 'aaa@gmail.com', 		user_name: 'sawa', invite_num: 6, be_invited_num: 100, accept_num:50, password:'foobar', password_confirmation: 'foobar')
-User.create(email: 'iiaddadadad@gmail.com', user_name: 'iida', invite_num: 0, be_invited_num: 100, accept_num:100, password:'foobar', password_confirmation: 'foobar')
-User.create(email: 'hogehoge@gmail.com', 	user_name: 'hoge', invite_num: 99, be_invited_num: 19932, accept_num:1999, password:'foobar', password_confirmation: 'foobar')
-User.create(email: 'fugafuga@gmail.com', 	user_name: 'fuga', invite_num: 6, be_invited_num: 10, accept_num:50, password:'foobar', password_confirmation: 'foobar')
-User.create(email: 'piyopiyo@gmail.com', 	user_name: 'piyo', invite_num: 100, be_invited_num: 10, accept_num:80, password:'foobar', password_confirmation: 'foobar')
+User.create(email: 'aaa@gmail.com', 		user_name: 'sawa', invite_num: 6, be_invited_num: 100, accept_num: 50, password:'foobar', password_confirmation: 'foobar')
+User.create(email: 'iiaddadadad@gmail.com', user_name: 'iida', invite_num: 1, be_invited_num: 100, accept_num: 100, password:'foobar', password_confirmation: 'foobar')
+User.create(email: 'hogehoge@gmail.com', 	user_name: 'hoge', invite_num: 99, be_invited_num: 19932, accept_num: 1999, password:'foobar', password_confirmation: 'foobar')
+User.create(email: 'fugafuga@gmail.com', 	user_name: 'fuga', invite_num: 6, be_invited_num: 10, accept_num: 50, password:'foobar', password_confirmation: 'foobar')
+User.create(email: 'piyopiyo@gmail.com', 	user_name: 'piyo', invite_num: 100, be_invited_num: 10, accept_num: 80, password:'foobar', password_confirmation: 'foobar')
 
 Group.create(id: 1, group_name: 'pon de lion')
 Group.create(id: 2, group_name: 'french cruller')
