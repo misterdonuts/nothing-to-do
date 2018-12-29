@@ -19,11 +19,7 @@
           <% else %>
             <div class="td1-image" ><%= image_tag('sample.jpg', :width => "80", :height => "80")  %></div>
           <% end %>
-          <% i.invitation_relations.each do |relation| %>
-            <% if relation.user.user_name == @user.user_name %>
-              <%= link_to i.user.user_name, "invitation_relations/#{relation.id}" %>
-            <% end %>
-          <% end %>
+          <%= link_to i.user.user_name, "invitation_relations/#{i.id}" %>
         </td>
         <td class="td-contents">
           <%= i.contents %>

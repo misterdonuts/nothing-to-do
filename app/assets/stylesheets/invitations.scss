@@ -72,3 +72,67 @@
   }
 
 }
+
+
+.kanji-info{
+  text-align: center;
+}
+.kanji-subtitle{
+  text-align: center;
+}
+table.invite-info-table {
+  width: 850px;
+  margin: 0 auto;
+  border-collapse:  collapse; /* セルの線を重ねる */
+  th, td{
+    padding: 30px 0px;
+    border-bottom: 1px solid grey;
+    border-top: 1px solid grey;
+  }
+  td{
+    padding: 5px 5px
+  }
+  tbody{
+    tr{
+      margin: 20px 0;
+      &:nth-child(odd){
+        background-color:  #e8e8e8;    /* 背景色指定 */
+      }
+      td.td-contents{
+        font-size: 1rem;
+        width:300px;
+      }
+      td.td-members{
+        .every-member-area{
+          display: flex;
+          margin-bottom: 5px;
+          .td2-image{
+            margin-right: 5px;
+            img{
+              object-fit: cover;
+              border-radius: 20px;
+            }
+          }
+          .td-member{
+            display: inline-block;
+            font-size: 1.2rem;
+            position: relative;
+            top: 10px;
+          }
+          .td-status{
+            display: inline-block;
+            font-size: 1.2rem;
+            position: relative;
+            top: 10px;
+          }
+        }
+      }
+      td.td-remain{
+        text-align: center;
+      }
+      td.td-decision{
+        text-align: center;
+      }
+    }
+  }
+}

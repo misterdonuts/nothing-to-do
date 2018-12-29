@@ -32,13 +32,6 @@ class InvitationRelationsController < ApplicationController
 		accept_num = @user.accept_num
   	begin
     		invitation_relation.update(status: params[:status])
-				if params[:status] == 1
-					accept_num += 1
-					@user.update(accept_num: accept_num)
-				elsif params[:status] == 2
-					 accept_num -= 1
-					@user.update(accept_num: accept_num)
-				end
   	rescue => e
     		p e
   	end
