@@ -5,9 +5,26 @@ class InvitationsController < ApplicationController
     # ログインユーザー取得
     @user = User.find(session[:user_id])
     # 招待相手を取得
-    @receivers = User.find(params[:user][:id])
-
+    if params[:user].nil?
+      redirect_to root_url
+    else
+      @receivers = User.find(params[:user][:id])
+    end
     # render plain: params.inspect
+  end
+
+  # 幹事情報画面
+  def kanji
+    @user = User.find(session[:user_id])
+    @invitations = Invitation.where(user_id: session[:user_id])
+    @invitations.each { |i|
+			# unixタイムスタンプにして残時間を計算
+			remain_minutes = i.time_limit.to_time.to_i - Time.now.to_i
+			remain_minutes = remain_minutes / 60 # second => minutes
+			i.update(remain_minutes: remain_minutes)
+		}
+    # headerのメッセージ表示用
+    @invitation_relations = InvitationRelation.where(user_id: session[:user_id])
   end
 
   # 招待確認
@@ -18,16 +35,41 @@ class InvitationsController < ApplicationController
     # @invited_users = User.where(id: InvitationRelation.where(invitation_id: params[:id]).select(:user_id))
   end
 
-  # 招待承諾, 辞退
+  # 幹事情報の締結・破棄
   # /invitations/1
-  def update
-    # invitation = Invitation.where(invitation_group_id: params[:id], receiver: session[:user_id]).first
-    # begin
-    #   invitation.update(accept: params[:status])
-    # rescue => e
-    #   p e
-    # end
-    # redirect_to invitation_path
+  def kanjiUpdate
+    user = User.find(session[:user_id])
+    invitation = Invitation.find(params[:id])
+    @invitation_relations = InvitationRelation.where(invitation_id: invitation.id)
+
+    # 招待を破棄時
+    if params[:decision] == '0'
+      invitation.destroy
+
+    # 招待を締結時
+    elsif  params[:decision] == '1'
+      # 締結フラグを立てる
+      invitation.update(is_decided: 1)
+
+      # 招待された側の情報を更新
+      @invitation_relations.each { |relation|
+        receiver =  User.find(relation.user_id)
+        # 参加者は暇率の数を更新
+        if relation.status == 1
+          accept_num = receiver.accept_num
+          accept_num += 1
+        end
+        # 招待された側は参加の有無に依らず誘われた数を更新
+        be_invited_num = receiver.be_invited_num
+        be_invited_num += 1
+        receiver.update(accept_num: accept_num, be_invited_num: be_invited_num)
+      }
+      # 幹事は幹事回数を更新
+      invite_num = user.invite_num
+      invite_num += 1
+      user.update(invite_num: invite_num)
+    end
+    redirect_to kanji_url
   end
 
 
@@ -39,32 +81,31 @@ class InvitationsController < ApplicationController
     @sender = User.find(session[:user_id])
     # 招待相手を取得
     @receivers = User.find(params[:receivers][:id])
-    
-    # 設定するinvitation_group_idの取得
-    max_invitation_group_id = Invitation.maximum(:invitation_group_id)
-    if max_invitation_group_id.blank?
-      next_invitation_group_id = 1
-    else
-      next_invitation_group_id = max_invitation_group_id + 1
-    end
+
 
     begin
+      invitation = Invitation.new(
+        contents: params[:text],
+        time_limit: DateTime.now + Rational(params[:time_span],24), # 現在日時＋2時間
+        user_id: session[:user_id],
+      )
+      invitation.save!
+
       @receivers.each do |receiver|
-        Invitation.create(
-          receiver: receiver.id,
-          contents: params[:text],
-          accept: 0,
-          time_limit: DateTime.now + Rational(2,24), # 現在日時＋2時間
-          user_id: session[:user_id],
-          invitation_group_id: next_invitation_group_id,
+        relation = InvitationRelation.new(
+          invitation_id: invitation.id,
+          sender_id: session[:user_id],
+          user_id: receiver.id,
+          status: 0,
         )
+        relation.save!
       end
     rescue => e
       p e
-      redirect_to invitations_path
+      redirect_to invitations_url
     end
 
-    redirect_to root_path
+    redirect_to root_url
 
   end
 end

@@ -1,0 +1,54 @@
+<% if @invitation_relations.present? %>
+ <h1 class="relation-top">招待情報</h1>
+
+ <table class="invited-info-table">
+  <thead>
+    <tr>
+      <th>送り主</th>
+      <th>招待内容</th>
+      <th>全招待メンバー</th>
+      <th>残り有効時間</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @invitations.each do |i| %>
+      <tr>
+        <td class="td-sender">
+          <% if i.user.image?  %>
+            <div class="td1-image" ><%= image_tag i.user.image.url,:width => "80", :height => "80" %></div>
+          <% else %>
+            <div class="td1-image" ><%= image_tag('sample.jpg', :width => "80", :height => "80")  %></div>
+          <% end %>
+          <%= link_to i.user.user_name, "invitation_relations/#{i.id}" %>
+        </td>
+        <td class="td-contents">
+          <%= i.contents %>
+        </td>
+        <td class="td-members">
+          <% i.invitation_relations.each do |member| %>
+            <div class="every-member-area">
+              <% if member.user.image?  %>
+                <div class="td3-image" ><%= image_tag member.user.image.url,:width => "40", :height => "40" %></div>
+              <% else %>
+                <div class="td3-image" ><%= image_tag('sample.jpg', :width => "40", :height => "40")  %></div>
+              <% end %>
+              <div class="td-member"><%= member.user.user_name %></div>
+            </div>
+          <% end %>
+        </td>
+        <td class="td-remain">
+          <% if i.remain_minutes >= 0 %>
+            <%= i.remain_minutes %>分
+          <% else %>
+            失効 (<%= i.remain_minutes %>分前)
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+ </table>
+<% else %>
+<div class="not-invited">
+   現在招待されていません。
+</div>
+<% end %>

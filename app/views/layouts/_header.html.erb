@@ -5,7 +5,14 @@
         <li><%= link_to "Home", root_path %></li>
         <li><%= link_to "ユーザー", users_path %></li>
         <li><%= link_to "グループ", groups_path %></li>
-        <li><%=link_to "メッセージ", '#' %></li>
+        <li><%= link_to "幹事情報", kanji_path %></li>
+        <li class="message"><%=link_to "招待情報", invitation_relations_path %>
+          <% if @invitation_relations.present? %>
+          <div class="announce-circle">
+           <%= @invitation_relations.count %>
+          </div>
+          <% end %>
+        </li>
         <% if logged_in? %>
         <li class="dropdown">
             <a>ユーザー情報</a>
