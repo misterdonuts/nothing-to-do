@@ -1,0 +1,2 @@
+class GroupInvitation < ApplicationRecord
+end
