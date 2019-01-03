@@ -30,9 +30,9 @@ class InvitationRelationsController < ApplicationController
 		@user = User.find(session[:user_id])
 		accept_num = @user.accept_num
   	begin
-    		invitation_relation.update(status: params[:status])
+    	invitation_relation.update(status: params[:status])
   	rescue => e
-    		p e
+    	p e
   	end
   	redirect_to invitation_relation_path
   end

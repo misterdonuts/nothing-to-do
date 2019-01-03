@@ -4,7 +4,7 @@ class GroupInvitationsController < ApplicationController
   # GET /group_invitations
   # GET /group_invitations.json
   def index
-    @group_invitations = GroupInvitation.all
+    @group_invitations = GroupInvitation.where(receiver_id: session[:user_id], status: 0)
   end
 
   # GET /group_invitations/1
@@ -40,15 +40,13 @@ class GroupInvitationsController < ApplicationController
   # PATCH/PUT /group_invitations/1
   # PATCH/PUT /group_invitations/1.json
   def update
-    respond_to do |format|
-      if @group_invitation.update(group_invitation_params)
-        format.html { redirect_to @group_invitation, notice: 'Group invitation was successfully updated.' }
-        format.json { render :show, status: :ok, location: @group_invitation }
-      else
-        format.html { render :edit }
-        format.json { render json: @group_invitation.errors, status: :unprocessable_entity }
-      end
+    group_invitation = GroupInvitation.where(id: params[:id])
+    begin
+      group_invitation.update(status: params[:status])
+    rescue => e
+      p e
     end
+    redirect_to group_invitations_path
   end
 
   # DELETE /group_invitations/1

@@ -49,9 +49,7 @@ InvitationRelation.create(status: 0, sender_id: 6, user_id:1, invitation_id: 2)
 InvitationRelation.create(status: 0, sender_id: 6, user_id:7, invitation_id: 2)
 InvitationRelation.create(status: 0, sender_id: 6, user_id:8, invitation_id: 2)
 
-GroupInvitation.create(group_id:1, user_id:7, sender_id: 1, status: 0)
-GroupInvitation.create(group_id:1, user_id:8, sender_id: 1, status: 0)
-GroupInvitation.create(group_id:4, user_id:1, sender_id: 7, status: 0)
-
-
-
+GroupInvitation.create(group_id:1, user_id:1, receiver_id: 6, status: 0)
+GroupInvitation.create(group_id:1, user_id:1, receiver_id: 7, status: 0)
+GroupInvitation.create(group_id:2, user_id:8, receiver_id: 1, status: 0)
+GroupInvitation.create(group_id:4, user_id:7, receiver_id: 1, status: 0)

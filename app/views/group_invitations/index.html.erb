@@ -2,27 +2,33 @@
 
 <h1>Group Invitations</h1>
 
-<table>
+<table align="center">
   <thead>
     <tr>
-      <th>Group</th>
-      <th>User</th>
-      <th>Sender</th>
-      <th>Status</th>
-      <th colspan="3"></th>
+      <th>グループ名</th>
+      <th>招待者</th>
+      <th>グループに参加する</th>
+      <th>参加を辞退する</th>
     </tr>
   </thead>
 
   <tbody>
     <% @group_invitations.each do |group_invitation| %>
       <tr>
-        <td><%= group_invitation.group_id %></td>
-        <td><%= group_invitation.user_id %></td>
-        <td><%= group_invitation.sender_id %></td>
-        <td><%= group_invitation.status %></td>
-        <td><%= link_to 'Show', group_invitation %></td>
-        <td><%= link_to 'Edit', edit_group_invitation_path(group_invitation) %></td>
-        <td><%= link_to 'Destroy', group_invitation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= group_invitation.group.group_name %></td>
+        <td><%= group_invitation.user.user_name %></td>
+        <td>
+            <%= form_with url: group_invitation_path(group_invitation.id), method: :put, local: true do |f| %>
+              <%= f.hidden_field :status, :value => 1 %>
+              <%= f.submit "参加する" %>
+            <% end %>
+        </td>
+        <td>
+            <%= form_with url: group_invitation_path(group_invitation.id), method: :put, local: true do |f| %>
+              <%= f.hidden_field :status, :value => 2 %>
+              <%= f.submit "辞退する" %>
+            <% end %>
+        </td>
       </tr>
     <% end %>
   </tbody>
