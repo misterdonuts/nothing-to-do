@@ -3,7 +3,7 @@
       <ul class="header-list">
         <li><%= link_to image_tag('title.jpg', :align => "center", :width => "220"), root_path %></li>
         <li><%= link_to "ユーザー", users_path %></li>
-        <li><%= link_to "グループ", groups_path %></li>
+        <li><%= link_to "グループ", group_relations_path %></li>
         <li><%= link_to "幹事情報", kanji_path %></li>
         <li class="message"><%=link_to "招待情報", invitation_relations_path %>
           <% if @invitation_relations.present? %>

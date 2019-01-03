@@ -1,4 +1,9 @@
 class GroupRelationsController < ApplicationController
+
+	def index
+    	@group_relations = GroupRelation.where(user_id: session[:user_id])
+	end
+
 	def show
 		@group_relations = GroupRelation.where(group_id: params[:id])
 		@users_in = User.where(id: GroupRelation.where(group_id: params[:id]).select(:user_id))
