@@ -11,9 +11,6 @@
   <thead>
     <tr>
       <th>ユーザー名</th>
-      <th>詳細</th>
-      <th>編集</th>
-      <th>削除</th>
     </tr>
   </thead>
 
@@ -21,14 +18,9 @@
     <% @users.each do |user| %>
       <tr>
         <td><%= user.user_name %></td>
-        <td><%= link_to 'Show', user %></td>
-        <td><%= link_to 'Edit', edit_user_path(user) %></td>
-        <td><%= link_to 'Destroy', user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
 </table>
 
 <br>
-
-<%= link_to 'New Group', new_user_path %>
