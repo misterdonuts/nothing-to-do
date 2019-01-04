@@ -7,22 +7,19 @@ class GroupRelationsController < ApplicationController
 	def show
 		@group_relations = GroupRelation.where(group_id: params[:id])
 		@users_in = User.where(id: GroupRelation.where(group_id: params[:id]).select(:user_id))
-		@users_out = User.where.not(id: GroupRelation.where(group_id: params[:id]).select(:user_id))
+		@users_invited = User.where(id: GroupInvitation.where(group_id: params[:id], status: 0).select(:receiver_id))
+		@users_out = User.where.not(id: GroupRelation.where(group_id: params[:id]).select(:user_id)).where.not(id: GroupInvitation.where(group_id: params[:id], status: 0).select(:receiver_id))
 		@group = Group.find(params[:id])
 	end
 
 	def create
-		p "paramsを表示"
-		p params[:group_id]
-		p params[:user][:id]
-
-		@new_users = User.find(params[:user][:id])
+		invited_users = User.find(params[:user][:id])
 
 		begin
-			@new_users.each do |new_user|
+			invited_users.each do |invited_user|
 				GroupRelation.create(
 					group_id: params[:group_id],
-					user_id: new_user.id,
+					user_id: invited_user.id,
 				)
 			end
 		rescue => e

@@ -24,17 +24,20 @@ class GroupInvitationsController < ApplicationController
   # POST /group_invitations
   # POST /group_invitations.json
   def create
-    @group_invitation = GroupInvitation.new(group_invitation_params)
-
-    respond_to do |format|
-      if @group_invitation.save
-        format.html { redirect_to @group_invitation, notice: 'Group invitation was successfully created.' }
-        format.json { render :show, status: :created, location: @group_invitation }
-      else
-        format.html { render :new }
-        format.json { render json: @group_invitation.errors, status: :unprocessable_entity }
+    invited_users = User.find(params[:user][:id])
+    begin
+      invited_users.each do |invited_user|
+        GroupInvitation.create(
+          group_id: params[:group_id],
+          receiver_id: invited_user.id,
+          user_id: session[:user_id],
+          status: 0,
+        )
       end
+    rescue => e 
+      p e
     end
+    redirect_to group_relation_path(params[:group_id])
   end
 
   # PATCH/PUT /group_invitations/1

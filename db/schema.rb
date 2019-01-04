@@ -19,7 +19,7 @@ ActiveRecord::Schema.define(version: 2019_01_03_033826) do
     t.integer "group_id"
     t.integer "user_id"
     t.integer "receiver_id"
-    t.integer "status"
+    t.integer "status"                    # 0: 招待中, 1: 受諾, 2:拒否
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
