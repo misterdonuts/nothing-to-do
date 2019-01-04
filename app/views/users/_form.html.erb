@@ -1,37 +1,34 @@
-<%= form_with(model: user, local: true) do |form| %>
-  <% if user.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
-
-      <ul>
-      <% user.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class="user-edit-form">
+  <%= form_with(model: user, local: true) do |f| %>
+    <% if user.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+  
+        <ul>
+        <% user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class="form-field">
+      <label class="name-label">名前: </label>
+      <%= f.text_field :user_name, class: "name" %>
+    </div>
+    <div class="form-field">
+      <label class="email-label">mail: </label>
+      <%= f.text_field :email, class: "email" %>
+    </div>
+    <div class="form-field">
+      <label class="password-label">パスワード: </label>
+      <%= f.password_field :password, class: "password" %>
+    </div>
+    <div class="form-field">
+      <label class="password-label">確認: </label>
+      <%= f.password_field :password_confirmation, class: "password" %>
+    </div>
+    <div class="form-field">
+      <%= f.submit '更新する', class: "edit-submit1" %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :user_name %>
-    <%= form.text_field :user_name, class: 'form-control' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email, class: 'form-control' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :password %>
-    <%= form.password_field :password, class: 'form-control' %>
-  </div>
-
-  <div class="field">
-    <%= form.label :password_confirmation, "Confirmation" %>
-    <%= form.password_field :password_confirmation, class: 'form-control' %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
