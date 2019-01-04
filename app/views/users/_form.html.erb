@@ -12,33 +12,23 @@
   <% end %>
 
   <div class="field">
-    <%= form.label :email %>
-    <%= form.text_field :email %>
-  </div>
-
-  <div class="field">
     <%= form.label :user_name %>
-    <%= form.text_field :user_name %>
+    <%= form.text_field :user_name, class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :icon_path %>
-    <%= form.text_field :icon_path %>
+    <%= form.label :email %>
+    <%= form.text_field :email, class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :invite_num %>
-    <%= form.number_field :invite_num %>
+    <%= form.label :password %>
+    <%= form.password_field :password, class: 'form-control' %>
   </div>
 
   <div class="field">
-    <%= form.label :be_invited_num %>
-    <%= form.number_field :be_invited_num %>
-  </div>
-
-  <div class="field">
-    <%= form.label :accept_num %>
-    <%= form.number_field :accept_num %>
+    <%= form.label :password_confirmation, "Confirmation" %>
+    <%= form.password_field :password_confirmation, class: 'form-control' %>
   </div>
 
   <div class="actions">

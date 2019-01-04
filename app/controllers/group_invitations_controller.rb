@@ -7,20 +7,6 @@ class GroupInvitationsController < ApplicationController
     @group_invitations = GroupInvitation.where(receiver_id: session[:user_id], status: 0)
   end
 
-  # GET /group_invitations/1
-  # GET /group_invitations/1.json
-  def show
-  end
-
-  # GET /group_invitations/new
-  def new
-    @group_invitation = GroupInvitation.new
-  end
-
-  # GET /group_invitations/1/edit
-  def edit
-  end
-
   # POST /group_invitations
   # POST /group_invitations.json
   def create
@@ -50,16 +36,6 @@ class GroupInvitationsController < ApplicationController
       p e
     end
     redirect_to group_invitations_path
-  end
-
-  # DELETE /group_invitations/1
-  # DELETE /group_invitations/1.json
-  def destroy
-    @group_invitation.destroy
-    respond_to do |format|
-      format.html { redirect_to group_invitations_url, notice: 'Group invitation was successfully destroyed.' }
-      format.json { head :no_content }
-    end
   end
 
   private
