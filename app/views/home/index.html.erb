@@ -36,9 +36,9 @@
                     <div class="td1-image" ><%= image_tag('sample.jpg', :width => "80", :height => "80")  %></div>
                   <% end %>
                 </td>
-                <td><%= user.email %></td>
                 <td><%= user.user_name %></td>
-                <td><%= user.image %></td>
+                <td><%= "#{user.accept_num * 100 / user.be_invited_num }%" %></td>
+                <td><%= "#{user.invite_num}回" %></td>
               </tr>
             <% end %>
         </tbody>
