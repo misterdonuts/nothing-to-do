@@ -14,6 +14,7 @@
         <thead>
           <tr>
             <th>Checkbox</th>
+            <th>アイコン</th>
             <th>名前</th>
             <th>暇率</th>
             <th>幹事回数</th>
@@ -28,9 +29,16 @@
                   &nbsp;
                   </label>
                 </td>
-                <td><%= user.email %></td>
+                <td class="user-info-main">
+                  <% if user.image?  %>
+                    <div class="td1-image" ><%= image_tag i.user.image.url,:width => "80", :height => "80" %></div>
+                  <% else %>
+                    <div class="td1-image" ><%= image_tag('sample.jpg', :width => "80", :height => "80")  %></div>
+                  <% end %>
+                </td>
                 <td><%= user.user_name %></td>
-                <td><%= user.image %></td>
+                <td><%= "#{user.accept_num * 100 / user.be_invited_num }%" %></td>
+                <td><%= "#{user.invite_num}回" %></td>
               </tr>
             <% end %>
         </tbody>
@@ -39,14 +47,5 @@
   <%= f.submit "誘う" , id: "submit-button", class: "invite-button"%>
   <% end %>
   <br><br><br>
-
 </div>
-<script>
-  $('.dropdown').on('click', function(){
-      if($('.dropdown-menu').hasClass('display-none')){
-        $('.dropdown-menu').removeClass('display-none');
-      } else {
-        $('.dropdown-menu').addClass('display-none');
-      }
-  });
-</script>
+

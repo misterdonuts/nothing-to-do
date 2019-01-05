@@ -10,10 +10,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_28_171313) do
+ActiveRecord::Schema.define(version: 2019_01_03_033826) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "group_invitations", force: :cascade do |t|
+    t.integer "group_id"
+    t.integer "user_id"
+    t.integer "receiver_id"
+    t.integer "status"                    # 0: 招待中, 1: 受諾, 2:拒否
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "group_relations", force: :cascade do |t|
     t.integer "user_id"

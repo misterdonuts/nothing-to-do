@@ -27,14 +27,6 @@ class InvitationsController < ApplicationController
     @invitation_relations = InvitationRelation.where(user_id: session[:user_id])
   end
 
-  # 招待確認
-  # GET /invitations/1
-  def show
-    # @user = User.find(session[:user_id])
-    # @invitation = Invitation.find_by(id: params[:id])
-    # @invited_users = User.where(id: InvitationRelation.where(invitation_id: params[:id]).select(:user_id))
-  end
-
   # 幹事情報の締結・破棄
   # /invitations/1
   def kanjiUpdate
@@ -72,17 +64,12 @@ class InvitationsController < ApplicationController
     redirect_to kanji_url
   end
 
-
-
   # 招待メールの作成アクション
   def create
-
     # ログインユーザー取得
     @sender = User.find(session[:user_id])
     # 招待相手を取得
     @receivers = User.find(params[:receivers][:id])
-
-
     begin
       invitation = Invitation.new(
         contents: params[:text],

@@ -1,6 +1,6 @@
 <h1>グループに招待する</h1>
 
-<h2>グループメンバー</h2>
+<h2>グループに所属している人</h2>
 
 <table class="free-people-table">
   <thead>
@@ -17,35 +17,62 @@
     <% end %>
   </tbody>
 </table>
-   <br/>
+<br/>
 
+<h2>招待中の人</h2>
 
-<h2>招待する人</h2>
-
-<%= form_with url: group_relations_path, method: :post, local: true do |f| %>
+<% if @users_invited %>
 	<table class="free-people-table">
 	  <thead>
 	    <tr>
-	      <th>招待</th>
 	      <th>ユーザー名</th>
 	    </tr>
 	  </thead>
 	
 	  <tbody align="center">
-	    <% @users_out.each.with_index(1) do |user, i| %>
+	    <% @users_invited.each.with_index(1) do |user, i| %>
 	      <tr>
-	      	<td>
-	      		<%= check_box_tag 'user[id][]', user.id, false, id: "checkbox-#{i}"  %>
-	            <label for=<%= "checkbox-#{i}" %> class=<%= "checkbox-label-#{i}" %> >
-	            &nbsp;
-	            </label>
-	      	</td>
 	        <td><%= user.user_name %></td>
 	      </tr>
 	    <% end %>
 	  </tbody>
 	</table>
-    <br/>
-    <%= f.hidden_field :group_id, :value => @group.id %>
-	<%= f.submit "招待する" , id: "submit-button", class: "invite-button"%>
+<% else %>
+	招待中の人はいません
+<% end %>
+<br/>
+
+
+<h2>招待する人</h2>
+
+<% if @users_out %>
+	<%= form_with url: group_invitations_path, method: :post, local: true do |f| %>
+		<table class="free-people-table">
+		  <thead>
+		    <tr>
+		      <th>招待</th>
+		      <th>ユーザー名</th>
+		    </tr>
+		  </thead>
+		
+		  <tbody align="center">
+		    <% @users_out.each.with_index(1) do |user, i| %>
+		      <tr>
+		      	<td>
+		      		<%= check_box_tag 'user[id][]', user.id, false, id: "checkbox-#{i}"  %>
+		            <label for=<%= "checkbox-#{i}" %> class=<%= "checkbox-label-#{i}" %> >
+		            &nbsp;
+		            </label>
+		      	</td>
+		        <td><%= user.user_name %></td>
+		      </tr>
+		    <% end %>
+		  </tbody>
+		</table>
+	    <br/>
+	    <%= f.hidden_field :group_id, :value => @group.id %>
+		<%= f.submit "招待する" , id: "submit-button", class: "invite-button"%>
+	<% end %>
+<% else %>
+	招待する人はいません
 <% end %>
