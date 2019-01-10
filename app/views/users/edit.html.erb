@@ -4,6 +4,20 @@
 
 <div class="user-edit-form">
   <%= form_with(model: @user, url: user_path, method: :put, local: true) do |f| %>
+    <% if @user.is_free == 1 %>
+      <%= f.hidden_field :is_free, :value => 0 %>
+      <div class="form-field">
+        <%= f.submit '忙しい', class: "edit-submit1" %>
+      </div>
+    <% else %>
+      <%= f.hidden_field :is_free, :value => 1 %>
+      <div class="form-field">
+        <%= f.submit '暇', class: "edit-submit1" %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%= form_with(model: @user, url: user_path, method: :put, local: true) do |f| %>
     <div class="form-field">
       <label class="name-label">名前: </label>
       <%= f.text_field :user_name, class: "name" %>
