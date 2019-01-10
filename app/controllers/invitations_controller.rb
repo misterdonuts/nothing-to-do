@@ -24,7 +24,8 @@ class InvitationsController < ApplicationController
     else
       @receivers = User.find(params[:user][:id])
     end
-    # render plain: params.inspect
+    # headerのメッセージ表示用
+    @invitation_relations = InvitationRelation.where(user_id: session[:user_id])
   end
 
   def update

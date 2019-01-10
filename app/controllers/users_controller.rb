@@ -5,22 +5,30 @@ class UsersController < ApplicationController
   # GET /users.json
   def index
     @users = User.all
+    # headerのメッセージ表示用
+    @invitation_relations = InvitationRelation.where(user_id: session[:user_id])
   end
 
   # GET /users/1
   # GET /users/1.json
   def show
     @user = User.find(params[:id])
+    # headerのメッセージ表示用
+    @invitation_relations = InvitationRelation.where(user_id: session[:user_id])
   end
 
   # GET /users/new
   def new
     @user = User.new
+    # headerのメッセージ表示用
+    @invitation_relations = InvitationRelation.where(user_id: session[:user_id])
   end
 
   # GET /users/1/edit
   def edit
     @user = User.find(params[:id])
+    # headerのメッセージ表示用
+    @invitation_relations = InvitationRelation.where(user_id: session[:user_id])
   end
 
   # POST /users

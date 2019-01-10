@@ -2,6 +2,8 @@ class GroupRelationsController < ApplicationController
 
 	def index
     	@group_relations = GroupRelation.where(user_id: session[:user_id])
+    	# headerのメッセージ表示用
+    	@invitation_relations = InvitationRelation.where(user_id: session[:user_id])
 	end
 
 	def show
@@ -10,6 +12,8 @@ class GroupRelationsController < ApplicationController
 		@users_invited = User.where(id: GroupInvitation.where(group_id: params[:id], status: 0).select(:receiver_id))
 		@users_out = User.where.not(id: GroupRelation.where(group_id: params[:id]).select(:user_id)).where.not(id: GroupInvitation.where(group_id: params[:id], status: 0).select(:receiver_id))
 		@group = Group.find(params[:id])
+		# headerのメッセージ表示用
+    	@invitation_relations = InvitationRelation.where(user_id: session[:user_id])
 	end
 
 	def create

@@ -5,16 +5,22 @@ class GroupsController < ApplicationController
   # GET /groups/1.json
   def show
     @group = Group.find(params[:id])
+    # headerのメッセージ表示用
+    @invitation_relations = InvitationRelation.where(user_id: session[:user_id])
   end
 
   # GET /groups/new
   def new
     @group = Group.new
+    # headerのメッセージ表示用
+    @invitation_relations = InvitationRelation.where(user_id: session[:user_id])
   end
 
   # GET /groups/1/edit
   def edit
     @group = Group.find(params[:id])
+    # headerのメッセージ表示用
+    @invitation_relations = InvitationRelation.where(user_id: session[:user_id])
   end
 
   # POST /groups
