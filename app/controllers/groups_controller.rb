@@ -5,6 +5,9 @@ class GroupsController < ApplicationController
   # GET /groups/1.json
   def show
     @group = Group.find(params[:id])
+    @group_relations = GroupRelation.where(group_id: params[:id])
+    @users_in = User.where(id: GroupRelation.where(group_id: params[:id]).select(:user_id))
+    @users_invited = User.where(id: GroupInvitation.where(group_id: params[:id], status: 0).select(:receiver_id))
     get_invitation_num
   end
 

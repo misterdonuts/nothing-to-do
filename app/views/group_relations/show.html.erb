@@ -1,49 +1,6 @@
 <h1>グループに招待する</h1>
 
-<h2>グループに所属している人</h2>
-
-<table class="free-people-table">
-  <thead>
-    <tr>
-      <th>ユーザー名</th>
-    </tr>
-  </thead>
-
-  <tbody align="center">
-    <% @users_in.each.with_index(1) do |user, i| %>
-      <tr>
-        <td><%= user.user_name %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<br/>
-
-<h2>招待中の人</h2>
-
-<% if @users_invited %>
-	<table class="free-people-table">
-	  <thead>
-	    <tr>
-	      <th>ユーザー名</th>
-	    </tr>
-	  </thead>
-	
-	  <tbody align="center">
-	    <% @users_invited.each.with_index(1) do |user, i| %>
-	      <tr>
-	        <td><%= user.user_name %></td>
-	      </tr>
-	    <% end %>
-	  </tbody>
-	</table>
-<% else %>
-	招待中の人はいません
-<% end %>
-<br/>
-
-
-<h2>招待する人</h2>
+<h2 class="gr-title">招待する人</h2>
 
 <% if @users_out %>
 	<%= form_with url: group_invitations_path, method: :post, local: true do |f| %>
@@ -54,7 +11,7 @@
 		      <th>ユーザー名</th>
 		    </tr>
 		  </thead>
-		
+
 		  <tbody align="center">
 		    <% @users_out.each.with_index(1) do |user, i| %>
 		      <tr>
@@ -74,5 +31,53 @@
 		<%= f.submit "招待する" , id: "submit-button", class: "invite-button"%>
 	<% end %>
 <% else %>
-	招待する人はいません
+	<h2>
+    招待する人はいません
+  </h2>
 <% end %>
+
+
+<h2 id="invitationMember" class="gr-title"><span>グループに所属している人 ▼</span></h2>
+<div id="invitationMemberDisplay" class="display-none">
+  <table class="free-people-table">
+    <thead>
+      <tr>
+        <th>ユーザー名</th>
+      </tr>
+    </thead>
+
+    <tbody align="center">
+      <% @users_in.each.with_index(1) do |user, i| %>
+        <tr>
+          <td><%= user.user_name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br/>
+</div>
+
+
+<h2 id="invitationNow" class="gr-title"><span>招待中の人 ▼</span></h2>
+<div id="invitationNowDisplay" class="display-none">
+  <% if @users_invited %>
+  	<table class="free-people-table">
+  	  <thead>
+  	    <tr>
+  	      <th>ユーザー名</th>
+  	    </tr>
+  	  </thead>
+
+  	  <tbody align="center">
+  	    <% @users_invited.each.with_index(1) do |user, i| %>
+  	      <tr>
+  	        <td><%= user.user_name %></td>
+  	      </tr>
+  	    <% end %>
+  	  </tbody>
+  	</table>
+  <% else %>
+  	招待中の人はいません
+  <% end %>
+  <br/>
+</div>

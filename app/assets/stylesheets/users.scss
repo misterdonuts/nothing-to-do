@@ -32,17 +32,17 @@
       margin: 30px;
       width: 250px;
       height: 40px;
-      background-color: #00A4BB;
+      background-color: #00558F;
       color: white;
     }
     .edit-submit2 {
       cursor: pointer;
-      border: 1px solid #5e666e;
+      border: 1px solid #00558F;
       border-radius: 4px;
       margin: 30px;
       width: 250px;
       height: 40px;
-      background-color: #00A4BB;
+      background-color: #00356F;
       color: white;
     }
   }
@@ -56,4 +56,39 @@
     }
   }
 
+}
+
+
+.th-user-name {
+  font-size: 1.3rem;
+}
+
+table{
+  border-collapse:  collapse; /* セルの線を重ねる */
+}
+.user-page-td {
+  display: flex;
+  width: 400px;
+  border-bottom: 1px solid #d7d7d7;
+  padding: 10px;
+
+  .user-page-image{
+    margin-right: 40px;
+    img{
+      object-fit: cover;
+      border-radius: 40px;
+    }
+  }
+  .user-page-name{
+    font-size: 1.1rem;
+    position: relative;
+    top: 30px;
+  }
+}
+.user-page-invitation{
+  width: 60px;
+  border-bottom: 1px solid #d7d7d7;
+  padding: 5px;
+  position: relative;
+  top:-1px;
 }

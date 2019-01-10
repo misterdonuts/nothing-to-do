@@ -1,8 +1,57 @@
 <h1>グループの詳細</h1>
 
-<div align="center">
+<div class="group-name" align="center">
 	<%= @group.group_name %>
 </div>
-<%= link_to 'グループにメンバーを招待する', group_relation_path %> |
-<%= link_to 'Edit', edit_group_path(@group) %> |
-<%= link_to 'Back', group_relations_path %>
+
+
+<h2 id="invitationMember" class="gr-title">グループに所属している人</h2>
+<div id="invitationMemberDisplay">
+  <table class="free-people-table">
+    <thead>
+      <tr>
+        <th>ユーザー名</th>
+      </tr>
+    </thead>
+
+    <tbody align="center">
+      <% @users_in.each.with_index(1) do |user, i| %>
+        <tr>
+          <td><%= user.user_name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <br/>
+</div>
+
+
+<h2 id="invitationNow" class="gr-title">招待中の人</h2>
+<div id="invitationNowDisplay">
+  <% if @users_invited %>
+  	<table class="free-people-table">
+  	  <thead>
+  	    <tr>
+  	      <th>ユーザー名</th>
+  	    </tr>
+  	  </thead>
+
+  	  <tbody align="center">
+  	    <% @users_invited.each.with_index(1) do |user, i| %>
+  	      <tr>
+  	        <td><%= user.user_name %></td>
+  	      </tr>
+  	    <% end %>
+  	  </tbody>
+  	</table>
+  <% else %>
+  	招待中の人はいません
+  <% end %>
+  <br/>
+</div>
+
+<div class="group-nav">
+<%= link_to 'メンバーを招待', group_relation_path %> |
+<%= link_to 'グループ情報の編集', edit_group_path(@group) %> |
+<%= link_to '戻る', group_relations_path %>
+</div>
