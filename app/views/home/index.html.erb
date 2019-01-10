@@ -38,7 +38,11 @@
                   <% end %>
                 </td>
                 <td><%= user.user_name %></td>
-                <td><%= "#{user.accept_num * 100 / user.be_invited_num }%" %></td>
+                <% if user.be_invited_num == 0 %>
+                  <td><%= "--" %></td>
+                <% else %>
+                  <td><%= "#{user.accept_num * 100 / user.be_invited_num }%" %></td>
+                <% end %>
                 <td><%= "#{user.invite_num}回" %></td>
               </tr>
             <% end %>
