@@ -32,7 +32,7 @@
                 </td>
                 <td class="user-info-main">
                   <% if user.image?  %>
-                    <div class="td1-image" ><%= image_tag i.user.image.url,:width => "80", :height => "80" %></div>
+                    <div class="td1-image" ><%= image_tag user.image.url,:width => "80", :height => "80" %></div>
                   <% else %>
                     <div class="td1-image" ><%= image_tag('sample.jpg', :width => "80", :height => "80")  %></div>
                   <% end %>
@@ -53,4 +53,3 @@
   <% end %>
   <br><br><br>
 </div>
-

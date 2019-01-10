@@ -14,7 +14,7 @@
       <tr>
         <td class="user-page-td">
           <% if user.image? %>
-            <div class="user-page-image"><%= image_tag i.user.image.url,:width => "80", :height => "80" %></div>
+            <div class="user-page-image"><%= image_tag user.image.url,:width => "80", :height => "80" %></div>
           <% else %>
             <div class="user-page-image"><%= image_tag('sample.jpg', :width => "80", :height => "80")  %></div>
           <% end %>
