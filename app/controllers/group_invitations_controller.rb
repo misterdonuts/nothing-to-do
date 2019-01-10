@@ -31,9 +31,16 @@ class GroupInvitationsController < ApplicationController
   # PATCH/PUT /group_invitations/1
   # PATCH/PUT /group_invitations/1.json
   def update
-    group_invitation = GroupInvitation.where(id: params[:id])
+    group_invitation = GroupInvitation.find(params[:id])
     begin
       group_invitation.update(status: params[:status])
+      if params[:status].to_i == 1
+        group_relation = GroupRelation.new(
+          user_id: session[:user_id],
+          group_id: group_invitation[:group_id],
+        )
+        group_relation.save!
+      end
     rescue => e
       p e
     end
