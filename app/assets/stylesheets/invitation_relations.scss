@@ -32,12 +32,18 @@ table.invited-info-table {
             border-radius: 40px;
           }
         }
-        a{
+        .td-sender-info {
           display: inline-block;
           text-align: left;
-          font-size: 1.2rem;
-          position: relative;
-          top: -33px;
+          font-size: 1rem;
+          .td-sender-user-name {
+            position: relative;
+            top: -20px;
+          }
+          .td-sender-link {
+            position: relative;
+            top: -16px;
+          }
         }
       }
       td.td-contents{

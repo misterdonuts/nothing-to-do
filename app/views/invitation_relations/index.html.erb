@@ -19,7 +19,10 @@
           <% else %>
             <div class="td1-image" ><%= image_tag('sample.jpg', :width => "80", :height => "80")  %></div>
           <% end %>
-          <%= link_to i.user.user_name, "invitation_relations/#{i.id}" %>
+          <div class="td-sender-info">
+            <div class="td-sender-user-name"><%= i.user.user_name %></div>
+            <div class="td-sender-link"><%= link_to "[詳細情報]", "invitation_relations/#{i.id}" %></div>
+          </div>
         </td>
         <td class="td-contents">
           <%= i.contents %>

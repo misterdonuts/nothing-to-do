@@ -32,7 +32,7 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      flash[:success] = "Welcome to the Sample App!"
+      # flash[:success] = "Welcome to the Sample App!"
       redirect_to @user
     else
       render 'new'
@@ -46,10 +46,10 @@ class UsersController < ApplicationController
     #編集しようとしてるユーザーがログインユーザーとイコールかをチェック
     if current_user == @user
       if @user.update(user_params)
-        flash[:success] = 'ユーザー情報を編集しました。'
+        # flash[:success] = 'ユーザー情報を編集しました。'
         redirect_to edit_user_path
       else
-        flash.now[:danger] = 'ユーザー情報の編集に失敗しました。'
+        # flash.now[:danger] = 'ユーザー情報の編集に失敗しました。'
         redirect_to edit_user_path
       end
     else
