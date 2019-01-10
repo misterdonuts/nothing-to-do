@@ -1,8 +1,9 @@
 
 <div class="index-container">
 
-  <form class="search" action="" post="post">
-    <input class="search-bar" type="text">
+  <form class="search" action="/" method="get">
+    <input type="hidden" name="is_search" value=1>
+    <input class="search-bar" type="text" name="text">
     <input class="search-botton" type="submit" value="検索">
   </form>
 
@@ -11,16 +12,16 @@
   <!-- form_with はデフォルトがAjax通信化されている（data-remote="true"）のでこれを無効にするのにlocal: trueが必要 -->
   <%= form_with url: new_invitation_path, method: :get, local: true do |f| %>
       <table class="free-people-table">
-        <thead>
-          <tr>
-            <th>Checkbox</th>
-            <th>アイコン</th>
-            <th>名前</th>
-            <th>暇率</th>
-            <th>幹事回数</th>
-          </tr>
-        </thead>
-        <tbody>
+          <thead>
+            <tr>
+              <th>Checkbox</th>
+              <th>アイコン</th>
+              <th>名前</th>
+              <th>暇率</th>
+              <th>幹事回数</th>
+            </tr>
+          </thead>
+          <tbody>
             <% @users.each.with_index(1) do |user,i| %>
               <tr>
                 <td>
@@ -41,7 +42,7 @@
                 <td><%= "#{user.invite_num}回" %></td>
               </tr>
             <% end %>
-        </tbody>
+          </tbody>
       </table>
       <br/>
   <%= f.submit "誘う" , id: "submit-button", class: "invite-button"%>

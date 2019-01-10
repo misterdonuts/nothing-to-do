@@ -47,10 +47,10 @@ class UsersController < ApplicationController
     if current_user == @user
       if @user.update(user_params)
         flash[:success] = 'ユーザー情報を編集しました。'
-        render :edit
+        redirect_to edit_user_path
       else
         flash.now[:danger] = 'ユーザー情報の編集に失敗しました。'
-        render :edit
+        redirect_to edit_user_path
       end
     else
         redirect_to root_url
@@ -75,6 +75,6 @@ class UsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_params
-      params.require(:user).permit(:email, :user_name, :invite_num, :be_invited_num, :accept_num, :password, :password_confirmation, :image)
+      params.require(:user).permit(:email, :user_name, :invite_num, :be_invited_num, :accept_num, :password, :password_confirmation, :image, :is_free, :account_name)
     end
 end
