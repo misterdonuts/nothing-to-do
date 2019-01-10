@@ -39,8 +39,8 @@ GroupRelation.create(group_id: 3, user_id: 6)
 GroupRelation.create(group_id: 4, user_id: 7)
 GroupRelation.create(group_id: 4, user_id: 8)
 
-Invitation.create(time_limit: "2018-12-30 00:37:06.938725", user_id: 1, contents: "わわわわ")
-Invitation.create(time_limit: "2018-12-23 00:37:06.938725", user_id: 6, contents: "わわわわ")
+Invitation.create(time_limit: "2018-12-30 00:37:06.938725", user_id: 1, remain_minutes: 30, contents: "わわわわ")
+Invitation.create(time_limit: "2018-12-23 00:37:06.938725", user_id: 6, remain_minutes: 30, contents: "わわわわ")
 
 InvitationRelation.create(status: 0, sender_id: 1, user_id:2, invitation_id: 1)
 InvitationRelation.create(status: 0, sender_id: 1, user_id:3, invitation_id: 1)
