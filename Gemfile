@@ -43,6 +43,7 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # sns認証
 gem 'devise'
+gem 'omniauth'
 gem 'omniauth-google-oauth2'
 
 group :development, :test do
