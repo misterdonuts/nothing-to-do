@@ -1,0 +1,139 @@
+// Place all the styles related to the Invitations controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.invitation-confirm {
+  width: 400px;
+  margin: 70px auto 60px;
+
+  p{
+    font-size: 1.5rem;
+    text-align: center;
+  }
+
+  ul.receiver {
+    margin: 0px;
+    padding: 0px;
+    list-style: none;
+    display: flex;
+    width: 400px;
+    height: 100px;
+    border-bottom: 1px solid #d7d7d7;
+    li {
+      display: inline-block;
+      &.receiver-image {
+        box-sizing: border-box;
+        padding: 10px 10px;
+        text-align: center;
+        img{
+          object-fit: cover;
+        }
+      }
+      &.receiver-name {
+        width: 300%;
+        box-sizing: border-box;
+        padding: 35px 20px;
+        font-size: 1.3rem;
+      }
+    }
+  }
+  p {
+    display: block;
+    font-size: 1.3rem;
+    text-align: center;
+  }
+  .text-field {
+    width: 100%;
+    height: 100px;
+    margin-bottom: 30px;
+  }
+  select{
+    display: block;
+    margin: 0 auto;
+    width: 80px;
+    margin-bottom: 40px;
+  }
+  input[type="submit"].confirm-button{
+    display: block;
+    margin: 30px auto;
+    width: 150px;
+    height: 40px;
+    color: white;
+    border: 1px solid #00558F;
+    border-radius: 4px;
+    cursor: pointer;
+    background-color: #00558F;
+    font-size: 1.3rem;
+    text-align: center;
+    transition-property: all;
+    transition-duration:  200ms;
+    &:hover{
+      background-color:  #00356F;
+    }
+  }
+
+}
+
+
+.kanji-info{
+  text-align: center;
+}
+.kanji-subtitle{
+  text-align: center;
+}
+table.invite-info-table {
+  width: 850px;
+  margin: 0 auto;
+  border-collapse:  collapse; /* セルの線を重ねる */
+  th, td{
+    padding: 30px 0px;
+    border-bottom: 1px solid grey;
+    border-top: 1px solid grey;
+  }
+  td{
+    padding: 5px 5px
+  }
+  tbody{
+    tr{
+      margin: 20px 0;
+      &:nth-child(odd){
+        background-color:  #e8e8e8;    /* 背景色指定 */
+      }
+      td.td-contents{
+        font-size: 1rem;
+        width:300px;
+      }
+      td.td-members{
+        .every-member-area{
+          display: flex;
+          margin-bottom: 5px;
+          .td2-image{
+            margin-right: 5px;
+            img{
+              object-fit: cover;
+              border-radius: 20px;
+            }
+          }
+          .td-member{
+            display: inline-block;
+            font-size: 1.2rem;
+            position: relative;
+            top: 10px;
+          }
+          .td-status{
+            display: inline-block;
+            font-size: 1.2rem;
+            position: relative;
+            top: 10px;
+          }
+        }
+      }
+      td.td-remain{
+        text-align: center;
+      }
+      td.td-decision{
+        text-align: center;
+      }
+    }
+  }
+}

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>NothingToDo</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <%= render 'layouts/shim' %>
+    <%= favicon_link_tag('favicon.ico') %>
+  </head>
+
+  <body>
+    <% flash.each do |message_type, message| %>
+      <div class="alert alert-<%= message_type %>"><%= message %></div>
+    <% end %>
+    <div class="container">
+      <%= render 'layouts/header' %>
+      <%= yield %>
+
+    </div>
+  </body>
+</html>
+
+<script>
+  $('.dropdown').on('click', function(){
+      if($('.dropdown-menu').hasClass('display-none')){
+        $('.dropdown-menu').removeClass('display-none');
+      } else {
+        $('.dropdown-menu').addClass('display-none');
+      }
+  });
+</script>

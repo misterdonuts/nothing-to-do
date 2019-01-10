@@ -1,0 +1,16 @@
+<h1 style="margin-bottom: 60px;">グループ情報の編集</h1>
+
+
+<div class="user-edit-form">
+  <%= form_with(model: @group, url: group_path, method: :put, local: true) do |f| %>
+    <div class="form-field">
+      <label class="name-label">グループ名: </label>
+      <%= f.text_field :group_name, class: "name" %>
+    </div>
+    <div class="form-field">
+      <%= f.submit '更新する', class: "edit-submit1" %>
+    </div>
+  <% end %>
+  <br/>
+
+</div>

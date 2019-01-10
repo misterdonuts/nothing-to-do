@@ -1,0 +1,226 @@
+@font-face {
+	font-family: 'MyFont';
+	src: url(font/A-OTF-ShinGoPro-Light.otf);
+}
+
+body{
+  font-size: 14px;
+  font-family: sans-serif;
+  color: #a7a7a7;
+}
+a{
+  color: inherit;
+  text-decoration: none;
+}
+.display-none{
+  display: none;
+}
+header{
+  width:100%;
+  height:60px;
+  border-bottom: 1px solid rgba(188,188,188,0.4);
+  background-color: #00558F;
+  color: white;
+  font-family: MyFont;
+  nav {
+      width: 1000px;
+      margin: 0 auto;
+      height:40px;
+  }
+  ul.header-list{
+    display: flex;
+    list-style: none;
+    margin: 0px;
+    padding-top: 14px;
+    padding-bottom: 14px;
+    li{
+      display: inline-block;
+      width: 110px;
+      font-size: 1rem;
+      line-height: 1.8;
+      cursor: pointer;
+      &:nth-child(1){
+        margin-right: auto;
+        width: 220px;
+        font-size: 1.6rem;
+        line-height: 1;
+      }
+      &.message{
+        position: relative;
+        .announce-circle{
+          position: absolute;
+          top: -10px;
+          left: 66px;
+          width: 25px;
+          height:25px;
+          color: white;
+          background-color: #dc5c54;
+          border: 0.6px solid #c8acad;
+          border-radius: 50%;
+          text-align: center;
+        }
+      }
+      &.dropdown{
+        position: relative;
+        ul.dropdown-menu{
+          color: #a7a7a7;
+          position: absolute;
+          right: 10px;
+          top: 36px;
+          background-color: white;
+          width: 100px;
+          height: 130px;
+          list-style: none;
+          border: 1px solid rgba(100,100,100,0.6);
+          border-radius: 4px;
+          padding: 0px;
+          li{
+            display: block;
+            font-size: 1rem;
+            line-height: 1.8;
+            box-sizing: border-box;
+            width:90px;
+            height: 30px;
+            margin: 10px 5px;;
+            border: 1px soiid rgba(188,188,188,0.4);
+            border-radius: 4px;
+            text-align: center;
+          }
+          li:hover{
+            background: orange;
+          }
+        }
+      }
+    }
+  }
+}
+
+
+div.index-container{
+  width: 1000px;
+  margin: 0 auto;
+}
+form.search{
+  display: flex;
+  justify-content: center;
+  margin-top: 60px;
+  margin-bottom: 60px;
+  .search-bar{
+      width: 400px;
+      height: 25px;
+      box-sizing: border-box;
+      border: 1px solid  rgba(188,188,188,1);
+      border-radius: 8px;
+      padding: 10px;
+      margin-right: 50px;
+      outline: 0;
+  }
+  .search-botton{
+      width: 50px;
+      height: 25px;
+      background-color: white;
+      border-radius: 4px;
+      text-align: center;
+      border: 1px solid rgba(188,188,188,1);
+      outline: 0;
+      cursor: pointer;
+  }
+}
+h1{
+  text-align: center;
+  font-size: 1.8rem;
+  font-weight: normal;
+  color: #a7a7a7;
+}
+.free-people-table{
+  text-align: center;
+  width: 900px;
+  margin: 0 auto;
+  color: #a7a7a7;
+  border-collapse:  collapse; /* セルの線を重ねる */
+  thead{
+    border-bottom: 1px solid black;
+    height: 50px;
+    font-size: 1.2rem;
+    tr{
+      border-bottom: 1px solid #d7d7d7;
+      height: 50px;
+      td{
+        width: 120px;
+        height: 50px;
+        border-bottom: 1px solid #d7d7d7;
+      }
+      td:nth-child(2){
+        width: 240px;
+      }
+    }
+  }
+  tbody{
+    border-bottom: 1px solid #d7d7d7;
+    height: 50px;
+    font-size: 1.2rem;
+    tr{
+      height: 60px;
+      td{
+        width: 100px;
+        height: 50px;
+        border-bottom: 1px solid #d7d7d7;
+        padding: 10px;
+      }
+      td:nth-child(2){
+        width: 240px;
+      }
+      label{
+        display: block;
+        width:60px;
+        height: 40px;
+        border-radius: 4px;
+        margin: 0 auto;
+        background-color: white;
+        border: 1px solid grey;
+        cursor: pointer;
+      }
+      input[type="checkbox"]{
+        display: none;
+      }
+      // 隣接セレクタ + はinputの後にlabel
+      input[type="checkbox"]:checked + label{
+        background-image: url("checkbox.jpg");
+        background-position: center;
+      }
+      td.user-info-main{
+        text-align: center;
+        div.td1-image {
+          display: inline-block;
+          img {
+            object-fit: cover;
+            border-radius: 40px;
+          }
+        }
+        .user-name{
+          display: inline-block;
+          position: relative;
+          top: -21px;
+        }
+      }
+    }
+  }
+}
+.invite-button{
+  display: block;
+  margin: 30px auto;
+  width: 150px;
+  height: 40px;
+  border: 1px solid #00558F;
+  border-radius: 4px;
+  color: white;
+  cursor: pointer;
+  background-color: #00558F;
+  font-size: 1.3rem;
+  text-align: center;
+  transition-property: all;
+  transition-duration:  200ms;
+  &:hover{
+    background-color: #00356F;
+  }
+}

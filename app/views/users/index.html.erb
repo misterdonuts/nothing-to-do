@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+
+<h1>ユーザー一覧</h1>
+
+<form class="search" action="" post="post">
+  <input class="search-bar" type="text">
+  <input class="search-botton" type="submit" value="検索">
+</form>
+
+<table align="center">
+
+  <tbody align="center">
+    <% @users.each do |user| %>
+      <tr>
+        <td class="user-page-td">
+          <% if user.image? %>
+            <div class="user-page-image"><%= image_tag i.user.image.url,:width => "80", :height => "80" %></div>
+          <% else %>
+            <div class="user-page-image"><%= image_tag('sample.jpg', :width => "80", :height => "80")  %></div>
+          <% end %>
+          <div class="user-page-name">
+            <%= user.user_name %>
+          </div>
+        </td>
+        <td class="user-page-invitation">
+          招待する
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

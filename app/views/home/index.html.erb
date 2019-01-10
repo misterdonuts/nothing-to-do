@@ -1,0 +1,52 @@
+
+<div class="index-container">
+
+  <form class="search" action="/" method="get">
+    <input type="hidden" name="is_search" value=1>
+    <input class="search-bar" type="text" name="text">
+    <input class="search-botton" type="submit" value="検索">
+  </form>
+
+  <h1>暇な人一覧</h1>
+
+  <!-- form_with はデフォルトがAjax通信化されている（data-remote="true"）のでこれを無効にするのにlocal: trueが必要 -->
+  <%= form_with url: new_invitation_path, method: :get, local: true do |f| %>
+      <table class="free-people-table">
+          <thead>
+            <tr>
+              <th>Checkbox</th>
+              <th>アイコン</th>
+              <th>名前</th>
+              <th>暇率</th>
+              <th>幹事回数</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @users.each.with_index(1) do |user,i| %>
+              <tr>
+                <td>
+                  <%= check_box_tag 'user[id][]', user.id, false, id: "checkbox-#{i}"  %>
+                  <label for=<%= "checkbox-#{i}" %> class=<%= "checkbox-label-#{i}" %> >
+                  &nbsp;
+                  </label>
+                </td>
+                <td class="user-info-main">
+                  <% if user.image?  %>
+                    <div class="td1-image" ><%= image_tag i.user.image.url,:width => "80", :height => "80" %></div>
+                  <% else %>
+                    <div class="td1-image" ><%= image_tag('sample.jpg', :width => "80", :height => "80")  %></div>
+                  <% end %>
+                </td>
+                <td><%= user.user_name %></td>
+                <td><%= "#{user.accept_num * 100 / user.be_invited_num }%" %></td>
+                <td><%= "#{user.invite_num}回" %></td>
+              </tr>
+            <% end %>
+          </tbody>
+      </table>
+      <br/>
+  <%= f.submit "誘う" , id: "submit-button", class: "invite-button"%>
+  <% end %>
+  <br><br><br>
+</div>
+

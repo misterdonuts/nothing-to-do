@@ -1,0 +1,34 @@
+<header>
+    <nav>
+      <ul class="header-list">
+        <li class="font-family: 'Verdana';"><%= link_to "Nothing To Do", root_path %>
+        </li>
+        <% if logged_in? %>
+          <li><%= link_to "ユーザー", users_path %></li>
+          <li><%= link_to "グループ", group_relations_path %></li>
+          <li><%= link_to "幹事情報", invitations_path %></li>
+          <li class="message">
+            <%=link_to "招待情報", invitation_relations_path %>
+            <% if @active_invitation_num > 0 %>
+              <div class="announce-circle">
+                <%= @active_invitation_num %>
+              </div>
+            <% end %>
+          </li>
+          <li>
+            <%= link_to "グループ招待", group_invitations_path %>
+          </li>
+          <li class="dropdown">
+            <a>ユーザー情報</a>
+            <ul class="dropdown-menu display-none">
+              <li><%= link_to "Profile", current_user %></li>
+              <li><%= link_to "Setting", edit_user_path(current_user.id) %></li>
+              <li><%= link_to "Log out", session_path(session.id), method: :delete %></li>
+            </ul>
+          </li>
+        <% else %>
+          <li><%= link_to "ログイン", new_session_path %></li>
+        <% end %>
+      </ul>
+    </nav>
+</header>

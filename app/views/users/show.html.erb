@@ -1,0 +1,23 @@
+<div class="user-edit-form">
+  <div class="show-image" >
+    <%= image_tag('sample.jpg', :width => "80", :height => "80") %>
+  </div>
+  <div class="form-field">
+    <label class="name-label">名前: <%= @user.user_name %></label>
+  </div>
+  <div class="form-field">
+    <label class="name-label">アカウント名: <%= @user.account_name %></label>
+  </div>
+  <div class="form-field">
+    <label class="name-label">メールアドレス: <%= @user.email %></label>
+  </div>
+  <div class="form-field">
+    <label class="name-label">幹事回数: <%= @user.invite_num %>回</label>
+  </div>
+  <div class="form-field">
+    <label class="name-label">招待された回数: <%= @user.be_invited_num %>回</label>
+  </div>
+  <div class="form-field">
+    <label class="name-label">参加した回数: <%= @user.accept_num %>回</label>
+  </div>
+</div>

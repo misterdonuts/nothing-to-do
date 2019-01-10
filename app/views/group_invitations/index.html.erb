@@ -1,0 +1,41 @@
+<p id="notice"><%= notice %></p>
+
+<h1>グループへの招待</h1>
+
+<% if @group_invitations %>
+  <table align="center">
+    <thead>
+      <tr>
+        <th>グループ名</th>
+        <th>招待者</th>
+        <th>グループに参加する</th>
+        <th>参加を辞退する</th>
+      </tr>
+    </thead>
+  
+    <tbody>
+      <% @group_invitations.each do |group_invitation| %>
+        <tr>
+          <td><%= group_invitation.group.group_name %></td>
+          <td><%= group_invitation.user.user_name %></td>
+          <td>
+              <%= form_with url: group_invitation_path(group_invitation.id), method: :put, local: true do |f| %>
+                <%= f.hidden_field :status, :value => 1 %>
+                <%= f.submit "参加する" %>
+              <% end %>
+          </td>
+          <td>
+              <%= form_with url: group_invitation_path(group_invitation.id), method: :put, local: true do |f| %>
+                <%= f.hidden_field :status, :value => 2 %>
+                <%= f.submit "辞退する" %>
+              <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <div align="center">招待はありません</div>
+<% end %>
+
+<br>

@@ -1,0 +1,58 @@
+<div class="edit-view">
+
+<h1 style="margin: 60px;">ユーザー設定</h1>
+
+<div class="user-edit-form">
+  <%= form_with(model: @user, url: user_path, method: :put, local: true) do |f| %>
+    <% if @user.is_free == 1 %>
+      <%= f.hidden_field :is_free, :value => 0 %>
+      <div class="form-field">
+        <%= f.submit '忙しい', class: "edit-submit1" %>
+      </div>
+    <% else %>
+      <%= f.hidden_field :is_free, :value => 1 %>
+      <div class="form-field">
+        <%= f.submit '暇', class: "edit-submit1" %>
+      </div>
+    <% end %>
+  <% end %>
+
+  <%= form_with(model: @user, url: user_path, method: :put, local: true) do |f| %>
+    <div class="form-field">
+      <label class="name-label">名前: </label>
+      <%= f.text_field :user_name, class: "name" %>
+    </div>
+    <div class="form-field">
+      <label class="email-label">mail: </label>
+      <%= f.text_field :email, class: "email" %>
+    </div>
+    <div class="form-field">
+      <label class="password-label">パスワード: </label>
+      <%= f.password_field :password, class: "password" %>
+    </div>
+    <div class="form-field">
+      <%= f.submit '更新する', class: "edit-submit1" %>
+    </div>
+  <% end %>
+  <br/>
+
+  <%= form_with(model: @user, url: user_path, method: :put, local: true) do |f| %>
+    <% if @user.image? %>
+    <div class="show-image">
+      <%= image_tag @user.image.url ,class: "image", :width => "120", :height => "120"%>
+    </div>
+    <% else %>
+      <div style="text-align: center;">画像が登録されていません。</div>
+    <% end %>
+    <div class="form-field">
+      <%= f.file_field :image , class: "edit-image-field" %>
+    </div>
+    <div class="form-field">
+      <%= f.submit '画像をアップロードする', class: "edit-submit2"  %>
+    </div>
+  <% end %>
+
+  <% if @user.errors.any? %>
+    <%= @user.errors.full_messages %>
+  <% end %>
+</div>

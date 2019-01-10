@@ -1,0 +1,38 @@
+// Place all the styles related to the GroupRelations controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.gr-th, .gr-td{
+  width: 170px;
+}
+.gr-td{
+    font-size: 1.1rem;
+    padding: 15px;
+}
+
+.gr-th {
+  border-bottom: 1px solid #d7d7d7;
+}
+
+.gr-title {
+  text-align: center;
+  margin: 40px auto;
+  span{
+    cursor: pointer;
+  }
+}
+
+.display-none {
+  display: none;
+}
+
+.group-name {
+  font-size: 1.4rem;
+}
+
+.group-nav {
+  margin: 0 auto;
+  margin-top: 50px;
+  margin-bottom: 30px;
+  width: 400px;
+}

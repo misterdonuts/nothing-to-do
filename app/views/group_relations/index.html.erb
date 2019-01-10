@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1 style="margin-bottom: 50px;">所属しているグループ一覧</h1>
+
+<table align="center">
+  <thead>
+    <tr class="gr-tr">
+      <th class="gr-th">グループ名</th>
+      <th class="gr-th">グループの詳細</th>
+      <th class="gr-th">メンバーを招待する</th>
+      <th class="gr-th">グループ情報を編集する</th>
+    </tr>
+  </thead>
+
+  <tbody align="center">
+    <% @group_relations.each do |group_relation| %>
+      <tr class="gr-tr">
+        <td class="gr-td"><%= group_relation.group.group_name %></td>
+        <td class="gr-td"><%= link_to '詳細情報', group_relation.group %></td>
+        <td class="gr-td"><%= link_to '招待', group_relation %></td>
+        <td class="gr-td"><%= link_to '編集', edit_group_path(group_relation.group) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Group', new_group_path %>

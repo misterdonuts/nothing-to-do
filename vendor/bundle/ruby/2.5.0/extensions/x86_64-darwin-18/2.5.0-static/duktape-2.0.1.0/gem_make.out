@@ -1,0 +1,30 @@
+current directory: /Users/takaaki/github/nothing-to-do/vendor/bundle/ruby/2.5.0/gems/duktape-2.0.1.0/ext/duktape
+/Users/takaaki/.rbenv/versions/2.5.3/bin/ruby -r ./siteconf20190110-62988-1payirg.rb extconf.rb
+checking for rb_sym2str()... yes
+creating Makefile
+
+current directory: /Users/takaaki/github/nothing-to-do/vendor/bundle/ruby/2.5.0/gems/duktape-2.0.1.0/ext/duktape
+make "DESTDIR=" clean
+
+current directory: /Users/takaaki/github/nothing-to-do/vendor/bundle/ruby/2.5.0/gems/duktape-2.0.1.0/ext/duktape
+make "DESTDIR="
+compiling duktape.c
+duk_bi_date.c:266:34: warning: implicit conversion loses integer precision: 'unsigned long' to 'duk_uint_fast32_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+                        match_val = (1UL << part_idx) + (1UL << (sep_idx + 9));  /* match against rule part/sep bits */
+                                  ~ ~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~
+duk_bi_encoding.c:179:63: warning: implicit conversion loses integer precision: 'long' to 'duk_codepoint_t' (aka 'int') [-Wshorten-64-to-32]
+                                codepoint = 0x010000L + ((enc_ctx->lead - 0xd800L) << 10) + (codepoint - 0xdc00L);
+                                          ~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
+duk_bi_global.c:173:50: warning: implicit conversion loses integer precision: 'long' to 'duk_codepoint_t' (aka 'int') [-Wshorten-64-to-32]
+                cp = ((cp1 - 0xd800L) << 10) + (cp2 - 0xdc00L) + 0x10000L;
+                   ~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+duk_hstring_misc.c:44:55: warning: implicit conversion loses integer precision: 'unsigned long' to 'duk_ucodepoint_t' (aka 'unsigned int') [-Wshorten-64-to-32]
+                                cp1 = ((cp1 - 0xd800UL) << 10) + (cp2 - 0xdc00UL) + 0x10000UL;
+                                    ~ ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+4 warnings generated.
+compiling duktape_ext.c
+linking shared-object duktape_ext.bundle
+
+current directory: /Users/takaaki/github/nothing-to-do/vendor/bundle/ruby/2.5.0/gems/duktape-2.0.1.0/ext/duktape
+make "DESTDIR=" install
+/usr/bin/install -c -m 0755 duktape_ext.bundle ./.gem.20190110-62988-8twnw8

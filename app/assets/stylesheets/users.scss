@@ -1,0 +1,94 @@
+// Place all the styles related to the users controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.user-edit-form {
+  width: 600px;
+  margin: 0 auto;
+
+
+  .form-field {
+    text-align: center;
+    margin: 30px auto;
+
+    .name-label, .email-label, .password-label{
+      font-size: 1.2rem;
+      color: #5e666e !important;
+      width: 300px;
+      display: inline-block;
+    }
+    input {
+      height: 25px;
+      width: 250px;
+      border: 1px solid #5e666e;
+      border-radius: 4px;
+      padding: 5px;
+      &.edit-image-field {
+          border: none;
+      }
+    }
+    .edit-submit1 {
+      cursor: pointer;
+      margin: 30px;
+      width: 250px;
+      height: 40px;
+      background-color: #00558F;
+      color: white;
+    }
+    .edit-submit2 {
+      cursor: pointer;
+      border: 1px solid #00558F;
+      border-radius: 4px;
+      margin: 30px;
+      width: 250px;
+      height: 40px;
+      background-color: #00356F;
+      color: white;
+    }
+  }
+
+  .show-image{
+    margin: 30px auto;
+    text-align: center;
+    img{
+      object-fit: cover;
+      border-radius: 60px;
+    }
+  }
+
+}
+
+
+.th-user-name {
+  font-size: 1.3rem;
+}
+
+table{
+  border-collapse:  collapse; /* セルの線を重ねる */
+}
+.user-page-td {
+  display: flex;
+  width: 400px;
+  border-bottom: 1px solid #d7d7d7;
+  padding: 10px;
+
+  .user-page-image{
+    margin-right: 40px;
+    img{
+      object-fit: cover;
+      border-radius: 40px;
+    }
+  }
+  .user-page-name{
+    font-size: 1.1rem;
+    position: relative;
+    top: 30px;
+  }
+}
+.user-page-invitation{
+  width: 60px;
+  border-bottom: 1px solid #d7d7d7;
+  padding: 5px;
+  position: relative;
+  top:-1px;
+}
