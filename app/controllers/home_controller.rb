@@ -1,5 +1,4 @@
 class HomeController < ApplicationController
-
 	def index
     	if session[:user_id].blank?
       		redirect_to new_session_path

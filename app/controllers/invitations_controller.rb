@@ -1,7 +1,21 @@
 class InvitationsController < ApplicationController
 
-  # 招待アクション
+  # 幹事情報画面
   def index
+    @user = User.find(session[:user_id])
+    @invitations = Invitation.where(user_id: session[:user_id])
+    @invitations.each { |i|
+      # unixタイムスタンプにして残時間を計算
+      remain_minutes = i.time_limit.to_time.to_i - Time.now.to_i
+      remain_minutes = remain_minutes / 60 # second => minutes
+      i.update(remain_minutes: remain_minutes)
+    }
+    # headerのメッセージ表示用
+    @invitation_relations = InvitationRelation.where(user_id: session[:user_id])
+  end
+
+  # 招待アクション
+  def new
     # ログインユーザー取得
     @user = User.find(session[:user_id])
     # 招待相手を取得
@@ -13,23 +27,7 @@ class InvitationsController < ApplicationController
     # render plain: params.inspect
   end
 
-  # 幹事情報画面
-  def kanji
-    @user = User.find(session[:user_id])
-    @invitations = Invitation.where(user_id: session[:user_id])
-    @invitations.each { |i|
-			# unixタイムスタンプにして残時間を計算
-			remain_minutes = i.time_limit.to_time.to_i - Time.now.to_i
-			remain_minutes = remain_minutes / 60 # second => minutes
-			i.update(remain_minutes: remain_minutes)
-		}
-    # headerのメッセージ表示用
-    @invitation_relations = InvitationRelation.where(user_id: session[:user_id])
-  end
-
-  # 幹事情報の締結・破棄
-  # /invitations/1
-  def kanjiUpdate
+  def update
     user = User.find(session[:user_id])
     invitation = Invitation.find(params[:id])
     @invitation_relations = InvitationRelation.where(invitation_id: invitation.id)
@@ -47,8 +45,8 @@ class InvitationsController < ApplicationController
       @invitation_relations.each { |relation|
         receiver =  User.find(relation.user_id)
         # 参加者は暇率の数を更新
+        accept_num = receiver.accept_num
         if relation.status == 1
-          accept_num = receiver.accept_num
           accept_num += 1
         end
         # 招待された側は参加の有無に依らず誘われた数を更新
@@ -61,7 +59,7 @@ class InvitationsController < ApplicationController
       invite_num += 1
       user.update(invite_num: invite_num)
     end
-    redirect_to kanji_url
+    redirect_to invitations_url
   end
 
   # 招待メールの作成アクション

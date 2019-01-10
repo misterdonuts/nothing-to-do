@@ -6,7 +6,7 @@
         <% if logged_in? %>
           <li><%= link_to "ユーザー", users_path %></li>
           <li><%= link_to "グループ", group_relations_path %></li>
-          <li><%= link_to "幹事情報", kanji_path %></li>
+          <li><%= link_to "幹事情報", invitations_path %></li>
           <li class="message">
             <%=link_to "招待情報", invitation_relations_path %>
             <% if @invitation_relations.present? %>
@@ -23,7 +23,7 @@
             <ul class="dropdown-menu display-none">
               <li><%= link_to "Profile", current_user %></li>
               <li><%= link_to "Setting", edit_user_path(current_user.id) %></li>
-              <li><%= link_to "Log out", logout_path, method: :delete %></li>
+              <li><%= link_to "Log out", session_path(session.id), method: :delete %></li>
             </ul>
           </li>
         <% else %>
