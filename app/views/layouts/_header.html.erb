@@ -9,9 +9,9 @@
           <li><%= link_to "幹事情報", invitations_path %></li>
           <li class="message">
             <%=link_to "招待情報", invitation_relations_path %>
-            <% if @invitation_relations.present? %>
+            <% if @active_invitation_num > 0 %>
               <div class="announce-circle">
-                <%= @invitation_relations.count %>
+                <%= @active_invitation_num %>
               </div>
             <% end %>
           </li>

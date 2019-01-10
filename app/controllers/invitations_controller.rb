@@ -10,8 +10,8 @@ class InvitationsController < ApplicationController
       remain_minutes = remain_minutes / 60 # second => minutes
       i.update(remain_minutes: remain_minutes)
     }
-    # headerのメッセージ表示用
     @invitation_relations = InvitationRelation.where(user_id: session[:user_id])
+    get_invitation_num
   end
 
   # 招待アクション
@@ -24,8 +24,8 @@ class InvitationsController < ApplicationController
     else
       @receivers = User.find(params[:user][:id])
     end
-    # headerのメッセージ表示用
     @invitation_relations = InvitationRelation.where(user_id: session[:user_id])
+    get_invitation_num
   end
 
   def update
