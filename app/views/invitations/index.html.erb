@@ -1,20 +1,72 @@
-<%= form_with url: invitations_path, method: :post, local: true, class: "invitation-confirm" do |f| %>
-  <p>誘う人一覧</p>
-  <% @receivers.each do |receiver| %>
-  <%= f.hidden_field 'receivers[id][]', :value => receiver.id %>
-  <ul class="receiver">
-    <% if receiver.image?  %>
-      <li class="receiver-image" ><%= image_tag receiver.image.url,:width => "80", :height => "80" %></li>
-    <% else %>
-      <li class="receiver-image" ><%= image_tag('sample.jpg', :width => "80", :height => "80")  %></li>
+<% if @invitation_relations.present? %>
+ <h1 class="kanji-info">幹事情報</h1>
+
+ <h4 class="kanji-subtitle">発行した招待一覧</h4>
+ <table class="invite-info-table">
+  <thead>
+    <tr>
+      <th>招待内容</th>
+      <th>招待メンバーのステータス</th>
+      <th>残り有効時間</th>
+      <th>招待の締め切り/破棄</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @invitations.each do |i| %>
+      <tr>
+        <td class="td-contents">
+          <%= i.contents %>
+        </td>
+        <td class="td-members">
+          <% i.invitation_relations.each do |member| %>
+            <div class="every-member-area">
+              <% if member.user.image?  %>
+                <div class="td2-image" ><%= image_tag member.user.image.url,:width => "40", :height => "40" %></div>
+              <% else %>
+                <div class="td2-image" ><%= image_tag('sample.jpg', :width => "40", :height => "40")  %></div>
+              <% end %>
+              <div class="td-member"><%= member.user.user_name %></div>
+              <div class="td-status">
+              <% if member.status == 0 %>
+              　<span style="color: #ff3333; font-weight:bold; font-size:1.1rem;">未回答</span>
+              <% elsif member.status == 1 %>
+              　<span style="color: #3366ff; font-weight:bold; font-size:1.1rem;">参加</span>
+              <% else %>
+                <span style="color: #23aa55; font-weight:bold; font-size:1.1rem;">辞退</span>
+              <% end %>
+              </div>
+            </div>
+          <% end %>
+        </td>
+        <td class="td-remain">
+          <% if i.remain_minutes >= 0 %>
+            <%= i.remain_minutes %>分
+          <% else %>
+            失効 (<%= i.remain_minutes %>分前)
+          <% end %>
+        </td>
+        <td class="td-decision">
+          <% if i.is_decided == 1 %>
+            <span style="font-wight:bold; color: blue;">成立済み</span>
+          <% else %>
+            <%= form_with url: invitation_path(i), method: :put, local: true, class:"form1" do |f| %>
+              <%= f.hidden_field :decision, :value => 1 %>
+              <%= f.hidden_field :id, :value => i.id %>
+              <%= f.submit "締め切る", class: "accept-button" %>
+            <% end %>
+            <%= form_with url: invitation_path(i), method: :put, local: true, class:"form1" do |f| %>
+              <%= f.hidden_field :decision, :value => 0 %>
+              <%= f.hidden_field :id, :value => i.id %>
+              <%= f.submit "破棄する", class: "destroy-button" %>
+            <% end %>
+          <% end %>
+        </td>
+      </tr>
     <% end %>
-    <li class="receiver-name" ><%= receiver.user_name %><li>
-  </ul>
-  <% end %>
-  <br />
-  <p>招待内容</p>
-  <%= f.text_area :text, id: "text" ,class: "text-field" %>
-  <p>有効時間</p>
-  <%= f.select(:time_span, [['1時間', 1], ['2時間', 2], ['3時間', 3]]) %>
-  <%= f.submit "招待" , class: "confirm-button" %>
+  </tbody>
+ </table>
+<% else %>
+<div class="not-invite">
+   発行している招待はありません。
+</div>
 <% end %>

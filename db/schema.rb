@@ -10,16 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_03_033826) do
+ActiveRecord::Schema.define(version: 2019_01_10_043514) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "authorizations", force: :cascade do |t|
+    t.string "provider"
+    t.string "uid"
+    t.integer "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["provider", "uid"], name: "index_authorizations_on_provider_and_uid", unique: true
+  end
 
   create_table "group_invitations", force: :cascade do |t|
     t.integer "group_id"
     t.integer "user_id"
     t.integer "receiver_id"
-    t.integer "status"                    # 0: 招待中, 1: 受諾, 2:拒否
+    t.integer "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -59,9 +68,9 @@ ActiveRecord::Schema.define(version: 2019_01_03_033826) do
   create_table "users", force: :cascade do |t|
     t.string "email"
     t.string "user_name"
-    t.integer "invite_num"
-    t.integer "be_invited_num"
-    t.integer "accept_num"
+    t.integer "invite_num", default: 0
+    t.integer "be_invited_num", default: 0
+    t.integer "accept_num", default: 0
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "password_digest"

@@ -5,6 +5,8 @@ class GroupInvitationsController < ApplicationController
   # GET /group_invitations.json
   def index
     @group_invitations = GroupInvitation.where(receiver_id: session[:user_id], status: 0)
+    
+    get_invitation_num
   end
 
   # POST /group_invitations
