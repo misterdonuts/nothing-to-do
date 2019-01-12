@@ -14,5 +14,9 @@ class User < ApplicationRecord
 		#authの情報を元にユーザー生成の処理を記述
 		#auth["credentials"]にアクセストークン、シークレットなどの情報が入ってます。
 		#auth["info"]["email"]にユーザーのメールアドレスが入ってます。(Twitterはnil)
+		User.create!(
+			:email => auth["info"]["email"],
+			:user_name => auth["info"]["name"]
+		)
 	end
 end
