@@ -1,6 +1,6 @@
-<% if @invitation_relations.present? %>
- <h1 class="relation-top">招待情報</h1>
+<h1 class="relation-top">招待情報</h1>
 
+<% if @invitation_relations.present? %>
  <table class="invited-info-table">
   <thead>
     <tr>
@@ -43,7 +43,7 @@
           <% if i.remain_minutes >= 0 %>
             <%= i.remain_minutes %>分
           <% else %>
-            失効 (<%= i.remain_minutes %>分前)
+            失効
           <% end %>
         </td>
       </tr>
@@ -51,7 +51,7 @@
   </tbody>
  </table>
 <% else %>
-<div class="not-invited">
-   現在招待されていません。
+<div align="center">
+  <h3>現在招待されていません。</h3>
 </div>
 <% end %>

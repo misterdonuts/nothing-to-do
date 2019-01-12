@@ -4,7 +4,12 @@ class UsersController < ApplicationController
   # GET /users
   # GET /users.json
   def index
-    @users = User.all
+    if params[:is_search].to_i == 1
+      search_text = '%' + params[:text] + '%'
+      @users = User.all.where('user_name like ?', search_text)
+    else
+      @users = User.all
+    end
     get_invitation_num
   end
 

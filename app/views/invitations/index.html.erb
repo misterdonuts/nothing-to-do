@@ -1,6 +1,6 @@
-<% if @invitation_relations.present? %>
- <h1 class="kanji-info">幹事情報</h1>
+<h1 class="kanji-info">幹事情報</h1>
 
+<% if @invitations.present? %>
  <h4 class="kanji-subtitle">発行した招待一覧</h4>
  <table class="invite-info-table">
   <thead>
@@ -66,7 +66,7 @@
   </tbody>
  </table>
 <% else %>
-<div class="not-invite">
-   発行している招待はありません。
+<div align="center">
+  <h3>発行している招待はありません。</h3>
 </div>
 <% end %>

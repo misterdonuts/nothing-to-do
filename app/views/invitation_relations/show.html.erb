@@ -41,29 +41,31 @@
     <%= @invitation.contents %>
   </div>
 
-  <h3 style="margin:30px 0px;">招待が失効するまで...</h3>
-  <div class="show-remain">
-    <%= @invitation.remain_minutes %>分
-  </div>
-  <br>
+  <% if @invitation.remain_minutes > 0 %>
+    <h3 style="margin:30px 0px;">招待が失効するまで...</h3>
+    <div class="show-remain">
+      <%= @invitation.remain_minutes %>分
+    </div>
+    <br>
 
-  <h3>招待を...</h3>
-  <div class="show-form">
-    <%= form_with url: invitation_relation_path, method: :put, local: true, class:"form1" do |f| %>
-      <%= f.hidden_field :status, :value => 1 %>
-      <% if @invitation_relation.status == 1 %>
-        <%= f.submit "受け入れる", disabled: true,class: "accept-button" %>
-      <% else %>
-        <%= f.submit "受け入れる", disabled: false, class: "accept-button" %>
+    <h3>招待を...</h3>
+    <div class="show-form">
+      <%= form_with url: invitation_relation_path, method: :put, local: true, class:"form1" do |f| %>
+        <%= f.hidden_field :status, :value => 1 %>
+        <% if @invitation_relation.status == 1 %>
+          <%= f.submit "受け入れる", disabled: true,class: "accept-button" %>
+        <% else %>
+          <%= f.submit "受け入れる", disabled: false, class: "accept-button" %>
+        <% end %>
       <% end %>
-    <% end %>
-    <%= form_with url: invitation_relation_path, method: :put, local: true, class:"form1" do |f| %>
-    <%= f.hidden_field :status, :value => 2 %>
-      <% if @invitation_relation.status == 2 %>
-        <%= f.submit "辞退する", disabled: true, class: "reject-button"%>
-      <% else %>
-        <%= f.submit "辞退する", disabled: false, class: "reject-button" %>
+      <%= form_with url: invitation_relation_path, method: :put, local: true, class:"form1" do |f| %>
+      <%= f.hidden_field :status, :value => 2 %>
+        <% if @invitation_relation.status == 2 %>
+          <%= f.submit "辞退する", disabled: true, class: "reject-button"%>
+        <% else %>
+          <%= f.submit "辞退する", disabled: false, class: "reject-button" %>
+        <% end %>
       <% end %>
-    <% end %>
-  </div>
+    </div>
+  <% end %>
 </div>

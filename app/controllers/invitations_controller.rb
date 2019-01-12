@@ -73,6 +73,7 @@ class InvitationsController < ApplicationController
       invitation = Invitation.new(
         contents: params[:text],
         time_limit: DateTime.now + Rational(params[:time_span],24), # 現在日時＋2時間
+        remain_minutes: params[:time_span],
         user_id: session[:user_id],
       )
       invitation.save!
