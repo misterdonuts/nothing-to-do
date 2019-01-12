@@ -5,6 +5,7 @@
 .session-new-form {
   width: 600px;
   margin: 0 auto;
+  text-align: center;
 
 
   .form-field {
@@ -32,8 +33,9 @@
       margin: 30px;
       width: 250px;
       height: 40px;
-      background-color: #00A4BB;
+      background-color: #00558F;
       color: white;
+      border-radius: 4px;
     }
     .edit-submit2 {
       cursor: pointer;

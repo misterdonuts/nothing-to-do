@@ -2,20 +2,32 @@
 <h1>Login</h1>
 
 <div class="session-new-form">
+  <% if @message %>
+    <%= @message %>
+  <% end %>
 	<%= form_for(:session, url: sessions_path) do |f| %>
 		<div class="form-field">
-      		<label class="email-label">mail: </label>
-      		<%= f.text_field :email, class: "email" %>
-    	</div>
+      <label class="email-label">mail: </label>
+      <%= f.text_field :email, class: "email" %>
+    </div>
 		<div class="form-field">
-      		<label class="password-label">パスワード: </label>
-      		<%= f.password_field :password, class: "password" %>
-    		</div>
+      <label class="password-label">パスワード: </label>
+      <%= f.password_field :password, class: "password" %>
+    </div>
 		<div class="form-field">
-      		<%= f.submit 'Login', class: "edit-submit1" %>
-    	</div>
+      <%= f.submit 'Login', class: "edit-submit1" %>
+    </div>
 	<% end %>
-</div>
 
-<p align="center"><%= link_to 'Googleでログイン', '/auth/google_oauth2' %></p>
-<p align="center"><%= link_to "Sign up now!", new_user_path %></p>
+  <div align="center">
+    <div class="form-field">
+      <%= link_to image_tag("google_login.png", :width => "250px" ), '/auth/google_oauth2', :align => "center" %>
+      <br>
+      <br>
+      <hr color="#f8f8f8">
+      <div class="edit-submit1">
+        <%= link_to "Sign up", new_user_path %>
+      </div>
+    </div>
+  </div>
+</div>
