@@ -18,16 +18,18 @@
       <%= f.submit 'Login', class: "edit-submit1" %>
     </div>
 	<% end %>
+</div>
 
-  <div align="center">
-    <div class="form-field">
-      <%= link_to image_tag("google_login.png", :width => "250px" ), '/auth/google_oauth2', :align => "center" %>
-      <br>
-      <br>
-      <hr color="#f8f8f8">
-      <div class="edit-submit1">
-        <%= link_to "Sign up", new_user_path %>
-      </div>
-    </div>
+<div align="center">
+  <%= link_to image_tag("google_login.png", :width => "250px" ), '/auth/google_oauth2' %>  
+
+  <br>
+  <br>
+  <hr color="#f8f8f8">
+  <br>
+  <br>
+  
+  <div class="sign-up-button">
+    <%= link_to "Sign up", new_user_path %>
   </div>
 </div>
