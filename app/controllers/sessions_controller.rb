@@ -16,7 +16,7 @@ class SessionsController < ApplicationController
         log_in user
         redirect_to root_path
       else
-        flash.now[:danger] = 'Invalid email/password combination'
+        @message = 'mailまたはパスワードが違います'
         render 'new'
       end
     end
