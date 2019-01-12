@@ -1,6 +1,6 @@
-<% if @invitation_relations.present? %>
- <h1 class="relation-top">招待情報</h1>
+<h1 class="relation-top">招待情報</h1>
 
+<% if @invitation_relations.present? %>
  <table class="invited-info-table">
   <thead>
     <tr>
@@ -51,7 +51,7 @@
   </tbody>
  </table>
 <% else %>
-<div class="not-invited">
-   現在招待されていません。
+<div align="center">
+  <h3>現在招待されていません。</h3>
 </div>
 <% end %>
