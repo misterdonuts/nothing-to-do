@@ -16,7 +16,7 @@ class User < ApplicationRecord
 		#auth["info"]["email"]にユーザーのメールアドレスが入ってます。(Twitterはnil)
 		User.create!(
 			:email => auth["info"]["email"],
-			:user_name => auth["info"]["name"]
+			:user_name => auth["info"]["name"],
 			:password => auth["provider"]
 		)
 	end
