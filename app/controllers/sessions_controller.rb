@@ -12,12 +12,16 @@ class SessionsController < ApplicationController
       redirect_back_or user
     else
       user = User.find_by(email:params[:session][:email].downcase)
+      if Authorization.find_by(user_id: user.id)
+        @message = 'googleでログインしてください'
+        redirect_to new_session_path
+      end
       if user && user.authenticate(params[:session][:password])
         log_in user
         redirect_to root_path
       else
         @message = 'mailまたはパスワードが違います'
-        render 'new'
+        redirect_to new_session_path
       end
     end
   end

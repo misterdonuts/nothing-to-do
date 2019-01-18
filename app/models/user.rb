@@ -17,6 +17,7 @@ class User < ApplicationRecord
 		User.create!(
 			:email => auth["info"]["email"],
 			:user_name => auth["info"]["name"]
+			:password => auth["provider"]
 		)
 	end
 end
