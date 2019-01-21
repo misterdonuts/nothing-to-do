@@ -9,7 +9,8 @@ class SessionsController < ApplicationController
         @auth = Authorization.create_from_auth(auth)
       end
       user = @auth.user
-      redirect_back_or user
+      log_in user
+      redirect_to root_path
     else
       user = User.find_by(email:params[:session][:email].downcase)
       if Authorization.find_by(user_id: user.id)
