@@ -36,3 +36,5 @@ nothingToDo/tmp/cache/
 # uploadした画像
 /public/uploads
 
+# idea
+.idea/*
