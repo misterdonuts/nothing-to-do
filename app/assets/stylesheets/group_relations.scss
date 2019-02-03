@@ -36,3 +36,16 @@
   margin-bottom: 30px;
   width: 400px;
 }
+
+.new-group-button {
+  display: table-cell;
+  cursor: pointer;
+  margin: 30px auto;
+  width: 250px;
+  height: 40px;
+  background-color: #00558F;
+  color: white;
+  border-radius: 4px;
+  text-align: center;
+  vertical-align: middle;
+}

@@ -1,23 +1,26 @@
-<%= form_with(model: group, local: true) do |form| %>
-  <% if group.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
+<div class="group-edit-form" >
+  <%= form_with(model: group, local: true) do |f| %>
+    <% if group.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(group.errors.count, "error") %> prohibited this group from being saved:</h2>
 
-      <ul>
-      <% group.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% group.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="form-field">
+      <label class="name-label">名前: </label>
+      <%= f.text_field :group_name, class: "name" %>
     </div>
+
+    <div class="form-field">
+      <%= f.submit "グループ作成", class: "edit-submit1" %>
+    </div>
+
   <% end %>
-
-  <div class="field">
-    <%= form.label :group_name %>
-    <%= form.text_field :group_name %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
 

@@ -19,11 +19,11 @@ User.create(email: 'eight@gmail.com', 	user_name: '八郎', invite_num: 100, be_
 User.create(email: 'nine@gmail.com',	user_name: '苦郎', invite_num: 100, be_invited_num: 100, 	accept_num: 80, 	password: 'foobar', password_confirmation: 'foobar', account_name: 'nine',	is_free: 1)
 User.create(email: 'ten@gmail.com',	user_name: '10浪', invite_num: 100, be_invited_num: 100, 	accept_num: 80, 	password: 'foobar', password_confirmation: 'foobar', account_name: 'ten',	is_free: 1)
 
-Group.create(id: 1, group_name: '位置')
-Group.create(id: 2, group_name: '煮')
-Group.create(id: 3, group_name: '酸')
-Group.create(id: 4, group_name: '史')
-Group.create(id: 5, group_name: '碁')
+Group.create(group_name: '位置')
+Group.create(group_name: '煮')
+Group.create(group_name: '酸')
+Group.create(group_name: '史')
+Group.create(group_name: '碁')
 
 GroupRelation.create(group_id: 1, user_id: 1)
 GroupRelation.create(group_id: 1, user_id: 2)
